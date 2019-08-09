@@ -1,0 +1,53 @@
+<div class="header" style="margin-top: 100px">
+  <header class="header-area">
+    <div class="main-header-area">
+      <div class="classy-nav-container breakpoint-off">
+        <nav class="classy-navbar justify-content-between" id="pocaNav">
+          <a class="nav-brand" routerLink="home">
+            <img src="" alt="" width="100px"></a>
+
+          <div class="classy-navbar-toggler">
+            <span class="navbarToggler"></span>
+          </div>
+
+          <div class="classy-menu">
+            <div class="classycloseIcon">
+              <div class="cross-wrap">
+                <span class="top"></span>
+                <span class="bottom"></span></div>
+            </div>
+
+            <div class="classynav">
+              <ul id="nav">
+                <li class="current-item"><a routerLink="main">TRANG CHỦ</a></li>
+                <li><a href="#">TOP100</a></li>
+                <li><a href="#">CA SỸ</a></li>
+                <li><a href="#">CHỦ ĐỀ</a></li>
+                <li><a href="#">ALBUM</a></li>
+                <li><a href="#">CÁ NHÂN</a></li>
+                <li *ngIf="authority"><a routerLink="create-song">TẠO BÀI HÁT</a></li>
+              </ul>
+
+              <div class="top-search-area">
+                <form method="post">
+                  <input type="search" name="top-search-bar" class="form-control" placeholder="Tìm bài hát hoặc ca sỹ...">
+                  <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                </form>
+              </div>
+
+              <div class="nav navbar-nav">
+                <ul>
+                  <li *ngIf="authority"><app-user></app-user></li>
+                  <li *ngIf="!authority" class="nav-item"><a [routerLink]="['auth/login']">Login</a></li>
+                  <li *ngIf="!authority" class="nav-item"><a [routerLink]="['auth/register']">Register</a></li>
+                </ul>
+              </div>
+
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </header>
+</div>
+<router-outlet></router-outlet>
