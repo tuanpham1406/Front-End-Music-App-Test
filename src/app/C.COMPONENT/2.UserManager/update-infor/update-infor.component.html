@@ -1,0 +1,50 @@
+<div class="container">
+  <div class="login offset-4">
+    <div id="loginbox" style="margin-top:50px; border: 1px solid #0c3a8b;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+
+      <div class="panel panel-info" >
+        <div class="panel-heading">
+          <div class="panel-title"><h2>Update Information</h2></div>
+        </div> <!--Header-->
+        <div class="panel-body" style="padding-top:30px" >
+          <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
+          <form name="form" (ngSubmit)="f.form.valid && onSubmit()" enctype="multipart/form-data" #f="ngForm" novalidate>
+
+            <div style="margin-bottom: 25px" class="form-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+              <div class="form-group">
+                <label for="firstName">First name</label>
+                <input type="text" class="form-control" name="firstName" [(ngModel)]="form.firstName" #name="ngModel" required />
+              </div>
+            </div> <!--FirstName-->
+
+            <div style="margin-bottom: 25px" class="form-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+              <div class="form-group">
+                <label for="lastName">Last Name</label>
+                <input type="text" class="form-control" name="lastName" [(ngModel)]="form.lastName" #name="ngModel" required />
+              </div>
+            </div> <!--LastName-->
+
+            <div style="margin-bottom: 25px" class="form-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="text" class="form-control" name="email" [(ngModel)]="form.email" #name="ngModel" required />
+              </div>
+            </div> <!--Email-->
+
+            <div style="margin-top:10px" class="form-group">
+              <div class="col-sm-12 offset-2 controls">
+                <button type="submit" class="btn btn-success"
+                        style="margin-right: 10px">Update</button>
+              </div>
+            </div> <!--Update Button-->
+
+          </form>
+        </div> <!--Body-->
+      </div>
+
+    </div>
+  </div>
+</div>
