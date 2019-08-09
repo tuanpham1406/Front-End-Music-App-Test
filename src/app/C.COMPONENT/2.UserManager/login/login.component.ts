@@ -31,6 +31,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
+    debugger;
     console.log(this.form);
     this.loginInfo = new LoginInfo(
       this.form.username,
@@ -38,19 +39,19 @@ export class LoginComponent implements OnInit {
 
     this.authService.loginAuth(this.loginInfo).subscribe(
       data => {
-        console.log(data);
-        this.tokenStorage.saveToken(data.accessToken);
-        this.tokenStorage.saveUsername(data.username);
-        this.tokenStorage.saveAuthorities(data.authorities);
+                  console.log(data);
+                  this.tokenStorage.saveToken(data.accessToken);
+                  this.tokenStorage.saveUsername(data.username);
+                  this.tokenStorage.saveAuthorities(data.authorities);
 
-        this.isLoginFailed = false;
-        this.isLoggedIn = true;
-        this.roles = this.tokenStorage.getAuthorities();
-        this.router.navigate(['/home']); },
+                  this.isLoginFailed = false;
+                  this.isLoggedIn = true;
+                  this.roles = this.tokenStorage.getAuthorities();
+                  this.router.navigate(['/home']); },
       error => {
-        console.log(error);
-        this.errorMessage = error.error.message;
-        this.isLoginFailed = true; });
+                  console.log(error);
+                  this.errorMessage = error.error.message;
+                  this.isLoginFailed = true; });
   }
 
 }
