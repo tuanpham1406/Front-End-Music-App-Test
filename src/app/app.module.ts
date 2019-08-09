@@ -12,6 +12,7 @@ import {httpInterceptorProviders} from './B.SERVICE/1.UserManager/auth/auth-inte
 import { RegisterComponent } from './C.COMPONENT/2.UserManager/register/register.component';
 import { UpdateInforComponent } from './C.COMPONENT/2.UserManager/update-infor/update-infor.component';
 import { ChangePassComponent } from './C.COMPONENT/2.UserManager/change-pass/change-pass.component';
+import { DashboardComponent } from './C.COMPONENT/2.UserManager/dashboard/dashboard.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { ChangePassComponent } from './C.COMPONENT/2.UserManager/change-pass/cha
     UserComponent,
     RegisterComponent,
     UpdateInforComponent,
-    ChangePassComponent
+    ChangePassComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
