@@ -10,6 +10,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {httpInterceptorProviders} from './B.SERVICE/1.UserManager/auth/auth-interceptor';
 import { RegisterComponent } from './C.COMPONENT/2.UserManager/register/register.component';
+import { UpdateInforComponent } from './C.COMPONENT/2.UserManager/update-infor/update-infor.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { RegisterComponent } from './C.COMPONENT/2.UserManager/register/register
     LoginComponent,
     HeaderComponent,
     UserComponent,
-    RegisterComponent
+    RegisterComponent,
+    UpdateInforComponent
   ],
   imports: [
     BrowserModule,
