@@ -4,6 +4,7 @@ import {AppComponent} from './app.component';
 import {LoginComponent} from './C.COMPONENT/2.UserManager/login/login.component';
 import {RegisterComponent} from './C.COMPONENT/2.UserManager/register/register.component';
 import {UpdateInforComponent} from './C.COMPONENT/2.UserManager/update-infor/update-infor.component';
+import {ChangePassComponent} from './C.COMPONENT/2.UserManager/change-pass/change-pass.component';
 
 
 const routes: Routes = [
@@ -11,6 +12,7 @@ const routes: Routes = [
   {path: 'home/auth/login', component: LoginComponent},
   {path: 'auth/register', component: RegisterComponent},
   {path: 'auth/updateinfor', component: UpdateInforComponent},
+  {path: 'auth/changepass', component: ChangePassComponent},
   {path: '', redirectTo: 'home', pathMatch: 'full'}
 ];
 
