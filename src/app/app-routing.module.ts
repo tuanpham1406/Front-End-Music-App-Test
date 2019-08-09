@@ -5,6 +5,7 @@ import {LoginComponent} from './C.COMPONENT/2.UserManager/login/login.component'
 import {RegisterComponent} from './C.COMPONENT/2.UserManager/register/register.component';
 import {UpdateInforComponent} from './C.COMPONENT/2.UserManager/update-infor/update-infor.component';
 import {ChangePassComponent} from './C.COMPONENT/2.UserManager/change-pass/change-pass.component';
+import {DashboardComponent} from './C.COMPONENT/2.UserManager/dashboard/dashboard.component';
 
 
 const routes: Routes = [
@@ -13,6 +14,7 @@ const routes: Routes = [
   {path: 'auth/register', component: RegisterComponent},
   {path: 'auth/updateinfor', component: UpdateInforComponent},
   {path: 'auth/changepass', component: ChangePassComponent},
+  {path: 'auth/dashboard', component: DashboardComponent},
   {path: '', redirectTo: 'home', pathMatch: 'full'}
 ];
 
