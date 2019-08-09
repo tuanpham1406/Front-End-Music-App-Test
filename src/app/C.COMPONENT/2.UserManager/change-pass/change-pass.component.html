@@ -1,0 +1,50 @@
+<div class="container">
+  <div class="login offset-4">
+    <div id="loginbox" style="margin-top:50px; border: 1px solid #0c3a8b;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+
+      <div class="panel panel-info" >
+        <div class="panel-heading">
+          <div class="panel-title"><h2>Change PassWord</h2></div>
+        </div> <!--Header-->
+        <div class="panel-body" style="padding-top:30px" >
+          <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
+          <form name="form" (ngSubmit)="f.form.valid && onSubmit()" enctype="multipart/form-data" #f="ngForm" novalidate>
+
+            <div style="margin-bottom: 25px" class="form-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+              <div class="form-group">
+                <label for="firstName">Password Current</label>
+                <input type="password" name = "currentPassword" class="form-control" [(ngModel)]= "form.currentPassword" #currentPassword = 'ngModel'>
+              </div>
+            </div> <!--Old Password-->
+
+            <div style="margin-bottom: 25px" class="form-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+              <div class="form-group">
+                <label for="password">New Password</label>
+                <input type="password" name = "newPassword" class="form-control" [(ngModel)]="form.newPassword" #newPassword = 'ngModel'>
+              </div>
+            </div> <!--New Password-->
+
+            <div style="margin-bottom: 25px" class="form-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+              <div class="form-group">
+                <label for="confirmNewPassword">New Password</label>
+                <input type="password" name = "newPassword" class="form-control" [(ngModel)]="form.newPassword" #newPassword = 'ngModel'>
+              </div>
+            </div> <!-- Confirm New Password-->
+
+            <div style="margin-top:10px" class="form-group">
+              <div class="col-sm-12 offset-2 controls">
+                <button type="submit" class="btn btn-success"
+                        style="margin-left: 20px">Update</button>
+              </div>
+            </div> <!--Update Button-->
+
+          </form>
+        </div> <!--Body-->
+      </div>
+
+    </div>
+  </div>
+</div>

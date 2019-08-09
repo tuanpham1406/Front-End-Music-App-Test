@@ -11,6 +11,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {httpInterceptorProviders} from './B.SERVICE/1.UserManager/auth/auth-interceptor';
 import { RegisterComponent } from './C.COMPONENT/2.UserManager/register/register.component';
 import { UpdateInforComponent } from './C.COMPONENT/2.UserManager/update-infor/update-infor.component';
+import { ChangePassComponent } from './C.COMPONENT/2.UserManager/change-pass/change-pass.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { UpdateInforComponent } from './C.COMPONENT/2.UserManager/update-infor/u
     HeaderComponent,
     UserComponent,
     RegisterComponent,
-    UpdateInforComponent
+    UpdateInforComponent,
+    ChangePassComponent
   ],
   imports: [
     BrowserModule,
