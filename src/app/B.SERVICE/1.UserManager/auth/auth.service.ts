@@ -1,0 +1,21 @@
+import { Injectable } from '@angular/core';
+import {LoginInfo} from '../../../A.MODEL/1.Request/UserManager/Login-Infor';
+import {Observable} from 'rxjs';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {JwtResponse} from '../../../A.MODEL/2.Response/jwt-response';
+
+const httpOptions = {
+  headers: new HttpHeaders({'Content-Type': 'application/json'})
+};
+
+@Injectable({
+  providedIn: 'root'
+})
+export class AuthService {
+  private loginUrl = 'http://localhost:8080/api/auth/signin';
+  constructor(private http: HttpClient) {
+  }
+  loginAuth(credentials: LoginInfo): Observable<JwtResponse> {
+    return this.http.post<JwtResponse>(this.loginUrl, credentials, httpOptions);
+  }
+}
