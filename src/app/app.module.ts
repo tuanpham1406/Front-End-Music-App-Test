@@ -9,6 +9,7 @@ import { UserComponent } from './C.COMPONENT/3.UserAuth/user/user.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {httpInterceptorProviders} from './B.SERVICE/1.UserManager/auth/auth-interceptor';
+import { RegisterComponent } from './C.COMPONENT/2.UserManager/register/register.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import {httpInterceptorProviders} from './B.SERVICE/1.UserManager/auth/auth-inte
     AppComponent,
     LoginComponent,
     HeaderComponent,
-    UserComponent
+    UserComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
