@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-detail-song',
@@ -7,7 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DetailSongComponent implements OnInit {
 
-  constructor() { }
+  @Input() fileUpload: string;
+
+  constructor() {
+  }
 
   ngOnInit() {
   }
