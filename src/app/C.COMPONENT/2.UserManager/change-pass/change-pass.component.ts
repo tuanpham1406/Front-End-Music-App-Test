@@ -30,7 +30,7 @@ export class ChangePassComponent implements OnInit {
       this.form.confirmNewPassword);
 
     this.authService
-      .changePassword(this.changePassword)
+      .changePasswordAuth(this.changePassword)
       .subscribe(
         data => {
           console.log(data);

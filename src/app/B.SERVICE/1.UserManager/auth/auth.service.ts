@@ -34,7 +34,7 @@ export class AuthService {
     return this.http.put<JwtResponse>(this.updateProfileUrl, info, httpOptions);
   }
 
-  changePassword(info: ChangePassword): Observable<JwtResponse> {
+  changePasswordAuth(info: ChangePassword): Observable<JwtResponse> {
     return this.http.put<JwtResponse>(this.changePassUrl  , info, httpOptions);
   }
 }
