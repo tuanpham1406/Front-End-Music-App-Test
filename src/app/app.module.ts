@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './C.COMPONENT/2.UserManager/login/login.component';
 import { HeaderComponent } from './C.COMPONENT/1.Layout/header/header.component';
-import { UserComponent } from './C.COMPONENT/3.UserAuth/user/user.component';
+import { UserComponent } from './C.COMPONENT/2.UserManager/UserAuth/user/user.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {httpInterceptorProviders} from './B.SERVICE/1.UserManager/auth/auth-interceptor';
@@ -13,6 +13,10 @@ import { RegisterComponent } from './C.COMPONENT/2.UserManager/register/register
 import { UpdateInforComponent } from './C.COMPONENT/2.UserManager/update-infor/update-infor.component';
 import { ChangePassComponent } from './C.COMPONENT/2.UserManager/change-pass/change-pass.component';
 import { DashboardComponent } from './C.COMPONENT/2.UserManager/dashboard/dashboard.component';
+import { CreateSongComponent } from './C.COMPONENT/3.SongManager/create-song/create-song.component';
+import { UpdateSongComponent } from './C.COMPONENT/3.SongManager/update-song/update-song.component';
+import { ListSongComponent } from './C.COMPONENT/3.SongManager/list-song/list-song.component';
+import { DetailSongComponent } from './C.COMPONENT/3.SongManager/detail-song/detail-song.component';
 
 
 @NgModule({
@@ -24,7 +28,11 @@ import { DashboardComponent } from './C.COMPONENT/2.UserManager/dashboard/dashbo
     RegisterComponent,
     UpdateInforComponent,
     ChangePassComponent,
-    DashboardComponent
+    DashboardComponent,
+    CreateSongComponent,
+    UpdateSongComponent,
+    ListSongComponent,
+    DetailSongComponent
   ],
   imports: [
     BrowserModule,
