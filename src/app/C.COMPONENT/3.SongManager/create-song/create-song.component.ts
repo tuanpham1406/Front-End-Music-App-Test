@@ -13,7 +13,9 @@ export class CreateSongComponent implements OnInit {
   currentFileUpload: FileUpload;
   progress: { percentage: number } = { percentage: 0 };
 
-  constructor(private uploadService: UploadFileService) { }
+  constructor(
+    private uploadService: UploadFileService
+    ) { }
 
   ngOnInit() {
   }
