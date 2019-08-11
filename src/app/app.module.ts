@@ -14,9 +14,11 @@ import { UpdateInforComponent } from './C.COMPONENT/2.UserManager/update-infor/u
 import { ChangePassComponent } from './C.COMPONENT/2.UserManager/change-pass/change-pass.component';
 import { DashboardComponent } from './C.COMPONENT/2.UserManager/dashboard/dashboard.component';
 import { CreateSongComponent } from './C.COMPONENT/3.SongManager/create-song/create-song.component';
-import { UpdateSongComponent } from './C.COMPONENT/3.SongManager/update-song/update-song.component';
 import { ListSongComponent } from './C.COMPONENT/3.SongManager/list-song/list-song.component';
 import { DetailSongComponent } from './C.COMPONENT/3.SongManager/detail-song/detail-song.component';
+import {environment} from '../environments/environment';
+import {AngularFireModule} from 'angularfire2';
+import {AngularFireDatabaseModule} from 'angularfire2/database';
 
 
 @NgModule({
@@ -30,7 +32,6 @@ import { DetailSongComponent } from './C.COMPONENT/3.SongManager/detail-song/det
     ChangePassComponent,
     DashboardComponent,
     CreateSongComponent,
-    UpdateSongComponent,
     ListSongComponent,
     DetailSongComponent
   ],
@@ -39,7 +40,9 @@ import { DetailSongComponent } from './C.COMPONENT/3.SongManager/detail-song/det
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireDatabaseModule, // for database
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]

@@ -6,6 +6,7 @@ import {RegisterComponent} from './C.COMPONENT/2.UserManager/register/register.c
 import {UpdateInforComponent} from './C.COMPONENT/2.UserManager/update-infor/update-infor.component';
 import {ChangePassComponent} from './C.COMPONENT/2.UserManager/change-pass/change-pass.component';
 import {DashboardComponent} from './C.COMPONENT/2.UserManager/dashboard/dashboard.component';
+import {CreateSongComponent} from './C.COMPONENT/3.SongManager/create-song/create-song.component';
 
 
 const routes: Routes = [
@@ -15,6 +16,7 @@ const routes: Routes = [
   {path: 'auth/updateinfor', component: UpdateInforComponent},
   {path: 'auth/changepass', component: ChangePassComponent},
   {path: 'auth/dashboard', component: DashboardComponent},
+  {path: 'home/create-song', component: CreateSongComponent},
   {path: '', redirectTo: 'home', pathMatch: 'full'}
 ];
 

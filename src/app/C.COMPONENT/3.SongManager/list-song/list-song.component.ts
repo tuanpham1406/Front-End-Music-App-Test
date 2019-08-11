@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Observable} from 'rxjs';
 import {UploadFileService} from '../../../B.SERVICE/2.UploadFile/upload-file.service';
+import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-list-song',
@@ -8,19 +9,16 @@ import {UploadFileService} from '../../../B.SERVICE/2.UploadFile/upload-file.ser
   styleUrls: ['./list-song.component.scss']
 })
 export class ListSongComponent implements OnInit {
-  showFile = false;
-  fileUploads: Observable<string[]>;
+  fileUploads: any[];
 
   constructor(private uploadService: UploadFileService) { }
 
   ngOnInit() {
-  }
-
-  showFiles(enable: boolean) {
-    this.showFile = enable;
-
-    if (enable) {
-      this.fileUploads = this.uploadService.getFiles();
-    }
+    this.uploadService
+      .getFileUploads(6)
+      .snapshotChanges().pipe(map(
+        changes => changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))))
+      .subscribe(fileUploads => {this.fileUploads = fileUploads;
+    });
   }
 }

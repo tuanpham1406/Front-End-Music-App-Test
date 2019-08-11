@@ -25,7 +25,7 @@
                 <li><a href="#">CHỦ ĐỀ</a></li>
                 <li><a href="#">ALBUM</a></li>
                 <li><a href="#">CÁ NHÂN</a></li>
-                <li *ngIf="authority"><a routerLink="create-song">TẠO BÀI HÁT</a></li>
+                <li *ngIf="authority"><a [routerLink]="['create-song']">TẠO BÀI HÁT</a></li>
               </ul>
 
               <div class="top-search-area">
