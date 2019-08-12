@@ -1,17 +1,19 @@
-export class SongInfor {
+import {FileUpload} from './FileUpload';
+
+export class SongInfor{
+  key: string;
   nameSong: string;
   singer: string;
   category: string;
   infor: string;
-  songUrl: string;
-  avatarUrl: string;
+  fileUrl: FileUpload;
+  avatarUrl: FileUpload;
 
-  constructor(nameSong: string, singer: string, category: string, infor: string, songUrl: string, avatarUrl: string) {
+  constructor(nameSong: string, singer: string, category: string, infor: string) {
     this.nameSong = nameSong;
     this.singer = singer;
     this.category = category;
     this.infor = infor;
-    this.songUrl = songUrl;
-    this.avatarUrl = avatarUrl;
   }
+
 }

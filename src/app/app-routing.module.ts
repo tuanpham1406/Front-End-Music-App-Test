@@ -7,10 +7,12 @@ import {UpdateInforComponent} from './C.COMPONENT/2.UserManager/update-infor/upd
 import {ChangePassComponent} from './C.COMPONENT/2.UserManager/change-pass/change-pass.component';
 import {DashboardComponent} from './C.COMPONENT/2.UserManager/dashboard/dashboard.component';
 import {CreateSongComponent} from './C.COMPONENT/3.SongManager/create-song/create-song.component';
+import {ContentComponent} from './C.COMPONENT/1.Layout/content/content.component';
 
 
 const routes: Routes = [
   {path: 'home', component: AppComponent},
+  {path: 'home/main', component: ContentComponent},
   {path: 'home/auth/login', component: LoginComponent},
   {path: 'auth/register', component: RegisterComponent},
   {path: 'auth/updateinfor', component: UpdateInforComponent},

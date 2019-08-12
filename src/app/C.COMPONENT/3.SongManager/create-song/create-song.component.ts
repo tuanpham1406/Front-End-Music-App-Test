@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import {UploadFileService} from '../../../B.SERVICE/2.UploadFile/upload-file.service';
+import {Component, OnInit} from '@angular/core';
 import {HttpEventType, HttpResponse} from '@angular/common/http';
 import {FileUpload} from '../../../A.MODEL/1.Request/SongManager/FileUpload';
+import {SongService} from '../../../B.SERVICE/2.SongManager/song.service';
+import {SongInfor} from '../../../A.MODEL/1.Request/SongManager/Song-Infor';
 
 @Component({
   selector: 'app-create-song',
@@ -13,15 +14,27 @@ export class CreateSongComponent implements OnInit {
   currentFileUpload: FileUpload;
   progress: { percentage: number } = { percentage: 0 };
 
-  constructor(
-    private uploadService: UploadFileService
-    ) { }
+  constructor(private songService: SongService) { }
 
   ngOnInit() {
   }
 
+  selectAvatar(event) {
+    this.selectedFiles = event.target.files;
+    this.uploadAvatar();
+  }
+
+  uploadAvatar() {
+    const file = this.selectedFiles.item(0);
+    this.selectedFiles = undefined;
+
+    this.currentFileUpload = new FileUpload(file);
+    this.songService.pushAvatarToStorage(this.currentFileUpload, this.progress);
+  }
+
   selectFile(event) {
     this.selectedFiles = event.target.files;
+    this.upload();
   }
 
   upload() {
@@ -29,6 +42,6 @@ export class CreateSongComponent implements OnInit {
     this.selectedFiles = undefined;
 
     this.currentFileUpload = new FileUpload(file);
-    this.uploadService.pushFileToStorage(this.currentFileUpload, this.progress);
+    this.songService.pushFileToStorage(this.currentFileUpload, this.progress);
   }
 }

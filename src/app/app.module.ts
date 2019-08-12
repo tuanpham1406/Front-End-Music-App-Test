@@ -19,6 +19,7 @@ import { DetailSongComponent } from './C.COMPONENT/3.SongManager/detail-song/det
 import {environment} from '../environments/environment';
 import {AngularFireModule} from 'angularfire2';
 import {AngularFireDatabaseModule} from 'angularfire2/database';
+import { ContentComponent } from './C.COMPONENT/1.Layout/content/content.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import {AngularFireDatabaseModule} from 'angularfire2/database';
     DashboardComponent,
     CreateSongComponent,
     ListSongComponent,
-    DetailSongComponent
+    DetailSongComponent,
+    ContentComponent
   ],
   imports: [
     BrowserModule,

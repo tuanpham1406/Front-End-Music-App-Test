@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Observable} from 'rxjs';
-import {UploadFileService} from '../../../B.SERVICE/2.UploadFile/upload-file.service';
 import {map} from 'rxjs/operators';
+import {SongService} from '../../../B.SERVICE/2.SongManager/song.service';
 
 @Component({
   selector: 'app-list-song',
@@ -11,11 +11,11 @@ import {map} from 'rxjs/operators';
 export class ListSongComponent implements OnInit {
   fileUploads: any[];
 
-  constructor(private uploadService: UploadFileService) { }
+  constructor(private songService: SongService) { }
 
   ngOnInit() {
-    this.uploadService
-      .getFileUploads(6)
+    this.songService
+      .songGetFileUploads(6)
       .snapshotChanges().pipe(map(
         changes => changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))))
       .subscribe(fileUploads => {this.fileUploads = fileUploads;

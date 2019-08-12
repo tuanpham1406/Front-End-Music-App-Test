@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {RegisterInfo} from '../../../A.MODEL/1.Request/UserManager/Register-Infor';
 import {AuthService} from '../../../B.SERVICE/1.UserManager/auth/auth.service';
+import {FileUpload} from '../../../A.MODEL/1.Request/SongManager/FileUpload';
 
 @Component({
   selector: 'app-register',
@@ -14,12 +15,15 @@ export class RegisterComponent implements OnInit {
   isSignUpFailed = false;
   errorMessage = '';
 
+  selectedFiles: FileList;
+  currentFileUpload: FileUpload;
   constructor(private authService: AuthService) {}
 
   ngOnInit() {}
 
   onSubmit() {
     console.log(this.form);
+
     this.registerInfo = new RegisterInfo(
       this.form.firstName,
       this.form.lastName,
@@ -28,7 +32,6 @@ export class RegisterComponent implements OnInit {
       this.form.password,
       this.form.confirmPassWord
     );
-
     this.authService
       .registerAuth(this.registerInfo)
       .subscribe(
@@ -40,5 +43,8 @@ export class RegisterComponent implements OnInit {
           console.log(error);
           this.errorMessage = error.error.message;
           this.isSignUpFailed = true; });
+
+
+
   }
 }

@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FileUpload} from '../../../A.MODEL/1.Request/SongManager/FileUpload';
-import {UploadFileService} from '../../../B.SERVICE/2.UploadFile/upload-file.service';
+import {SongService} from '../../../B.SERVICE/2.SongManager/song.service';
+
 
 @Component({
   selector: 'app-detail-song',
@@ -11,12 +12,13 @@ export class DetailSongComponent implements OnInit {
 
   @Input() fileUpload: FileUpload;
 
-  constructor(private uploadService: UploadFileService) { }
+  constructor(private songService: SongService) { }
 
   ngOnInit() {
   }
 
   deleteFileUpload(fileUpload) {
-    this.uploadService.deleteFileUpload(fileUpload);
+    this.songService
+      .songDeleteFileUpload(fileUpload);
   }
 }
