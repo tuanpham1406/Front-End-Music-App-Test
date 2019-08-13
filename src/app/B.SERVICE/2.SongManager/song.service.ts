@@ -11,10 +11,8 @@ import * as firebase from 'firebase';
 export class SongService {
   private basePathAvatar = 'dangduc/avatar';
   private basePathFile = 'dangduc/fileMp3';
-  private baseCreateSongInfo = 'http://localhost:8080/api/songs/create';
-  private baseEditSongInfo = 'http://localhost:8080/api/songs/edit';
-  private baseListSongInfo = 'http://localhost:8080/api/songs/list';
-  private baseDeleteSongInfo = 'http://localhost:8080/api/songs/delete';
+
+  private baseSongInfo = 'http://localhost:8080/api/songs';
 
   constructor(
     private db: AngularFireDatabase,
