@@ -1,6 +1,7 @@
 import {FileUpload} from './FileUpload';
 
 export class SongInfor {
+  id: number;
   key: string;
   nameSong: string;
   singer: string;

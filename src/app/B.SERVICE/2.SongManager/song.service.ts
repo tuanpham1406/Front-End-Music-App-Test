@@ -3,6 +3,8 @@ import {AngularFireDatabase, AngularFireList} from 'angularfire2/database';
 import {HttpClient} from '@angular/common/http';
 import {FileUpload} from '../../A.MODEL/1.Request/SongManager/FileUpload';
 import * as firebase from 'firebase';
+import {Observable} from 'rxjs';
+import {SongInfor} from '../../A.MODEL/1.Request/SongManager/Song-Infor';
 
 
 @Injectable({
@@ -17,7 +19,8 @@ export class SongService {
   constructor(
     private db: AngularFireDatabase,
     private http: HttpClient
-  ) { }
+  ) {
+  }
 
   // XU LI SERVICE CHO DATA BASSE
   pushFileToStorage(fileUpload: FileUpload, progress: { percentage: number }) {
@@ -125,4 +128,22 @@ export class SongService {
   }
 
   // XU LI SERVICE CHO BACK-END
+  getSong(): Observable<SongInfor[]> {
+    return this.http.get<SongInfor[]>(this.baseSongInfo);
+  }
+
+  getSongById(id: number): Observable<SongInfor> {
+    return this.http.get<SongInfor>(`${this.baseSongInfo}/${id}`);
+  }
+
+  createSong(song: SongInfor): Observable<SongInfor> {
+    return this.http.post<SongInfor>(this.baseSongInfo, song);
+  }
+
+  updateSong(song: SongInfor): Observable<SongInfor> {
+    return this.http.patch<SongInfor>(`${this.baseSongInfo}/${song.id}`, song);
+  }
+  deleteSong(id: number): Observable<SongInfor> {
+    return this.http.delete<SongInfor>(`${this.baseSongInfo}/${id}`);
+  }
 }
