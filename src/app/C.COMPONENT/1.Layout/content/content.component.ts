@@ -3,6 +3,8 @@ import {Observable} from 'rxjs';
 import {SongService} from '../../../B.SERVICE/2.SongManager/song.service';
 import {map} from 'rxjs/operators';
 import {FileUpload} from '../../../A.MODEL/1.Request/SongManager/FileUpload';
+import {SongFile} from '../../../A.MODEL/1.Request/SongManager/SongFile';
+import {CaroselService} from '../../../B.SERVICE/0.Layout/carosel.service';
 
 @Component({
   selector: 'app-content',
@@ -12,9 +14,11 @@ import {FileUpload} from '../../../A.MODEL/1.Request/SongManager/FileUpload';
 export class ContentComponent implements OnInit {
   fileMp3Uploads: any[];
   fileAvatarUploads: any[];
-  fileNumber = 0;
+  fileCaroselUploads: any[];
 
-  constructor(private songService: SongService) {
+  constructor(
+    private songService: SongService,
+    private caroselService: CaroselService) {
   }
 
   ngOnInit() {
@@ -36,6 +40,15 @@ export class ContentComponent implements OnInit {
       .subscribe(
         fileUploads => {
           this.fileAvatarUploads = fileUploads;
+        });
+    this.caroselService
+      .getFileUploads(100)
+      .snapshotChanges()
+      .pipe(map(changes =>
+        changes.map(c => ({key: c.payload.key, ...c.payload.val()}))))
+      .subscribe(
+        fileUploads => {
+          this.fileCaroselUploads = fileUploads;
         });
   }
 

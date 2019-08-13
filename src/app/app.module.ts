@@ -20,6 +20,7 @@ import {environment} from '../environments/environment';
 import {AngularFireModule} from 'angularfire2';
 import {AngularFireDatabaseModule} from 'angularfire2/database';
 import { ContentComponent } from './C.COMPONENT/1.Layout/content/content.component';
+import { CaroselComponent } from './C.COMPONENT/1.Layout/content/carosel/carosel.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { ContentComponent } from './C.COMPONENT/1.Layout/content/content.compone
     CreateSongComponent,
     ListSongComponent,
     DetailSongComponent,
-    ContentComponent
+    ContentComponent,
+    CaroselComponent
   ],
   imports: [
     BrowserModule,

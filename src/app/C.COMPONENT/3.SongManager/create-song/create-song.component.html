@@ -10,7 +10,7 @@
 
         <div class="panel-body" style="padding-top:30px" >
           <div style="display:none" id="createsong-alert" class="alert alert-danger col-sm-12"></div>
-          <form name="form" #f="ngForm" novalidate>
+          <form name="form" (ngSubmit)="submit()" #f="ngForm" novalidate>
 
             <!--<div style="margin-bottom: 25px" class="form-group">-->
               <!--<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>-->
@@ -51,19 +51,19 @@
                      <!--[(ngModel)]="form.infor" #infor="ngModel" required minlength="6"-->
                      <!--placeholder="Information">-->
               <!--<div *ngIf="f.submitted && infor.invalid">-->
-                <!--<div *ngIf="infor.errors.required">Category is required</div>-->
+                <!--<div *ngIf="infor.errors.required">Information is required</div>-->
               <!--</div>-->
             <!--</div> &lt;!&ndash;Information&ndash;&gt;-->
 
             <div style="margin-bottom: 25px" class="form-group">
               <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-              <input type="file" (change)="selectFile($event)">
-            </div> <!--Choose File-->
+              <input type="file" (change)="selectAvatar($event)">
+            </div> <!--Choose Avatar-->
 
             <div style="margin-bottom: 25px" class="form-group">
               <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-              <input type="file" (change)="selectAvatar($event)">
-            </div> <!--Choose Avatar-->
+              <input type="file" (change)="selectFile($event)">
+            </div> <!--Choose File-->
 
 
 

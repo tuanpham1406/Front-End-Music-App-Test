@@ -18,7 +18,5 @@ export class DetailSongComponent implements OnInit {
   }
 
   deleteFileUpload(fileUpload) {
-    this.songService
-      .songDeleteFileUpload(fileUpload);
   }
 }

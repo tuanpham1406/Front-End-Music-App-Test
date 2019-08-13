@@ -1,13 +1,11 @@
 import {FileUpload} from './FileUpload';
 
-export class SongInfor{
+export class SongInfor {
   key: string;
   nameSong: string;
   singer: string;
   category: string;
   infor: string;
-  fileUrl: FileUpload;
-  avatarUrl: FileUpload;
 
   constructor(nameSong: string, singer: string, category: string, infor: string) {
     this.nameSong = nameSong;
@@ -15,5 +13,4 @@ export class SongInfor{
     this.category = category;
     this.infor = infor;
   }
-
 }

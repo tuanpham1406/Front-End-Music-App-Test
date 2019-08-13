@@ -11,8 +11,17 @@ import * as firebase from 'firebase';
 export class SongService {
   private basePathAvatar = 'dangduc/avatar';
   private basePathFile = 'dangduc/fileMp3';
-  constructor(private db: AngularFireDatabase) { }
+  private baseCreateSongInfo = 'http://localhost:8080/api/songs/create';
+  private baseEditSongInfo = 'http://localhost:8080/api/songs/edit';
+  private baseListSongInfo = 'http://localhost:8080/api/songs/list';
+  private baseDeleteSongInfo = 'http://localhost:8080/api/songs/delete';
 
+  constructor(
+    private db: AngularFireDatabase,
+    private http: HttpClient
+  ) { }
+
+  // XU LI SERVICE CHO DATA BASSE
   pushFileToStorage(fileUpload: FileUpload, progress: { percentage: number }) {
     const storageRef = firebase.storage().ref();
     const uploadTask = storageRef.child(`${this.basePathFile}/${fileUpload.file.name}`).put(fileUpload.file);
@@ -116,4 +125,6 @@ export class SongService {
     const storageRef = firebase.storage().ref();
     storageRef.child(`${this.basePathAvatar}/${name}`).delete();
   }
+
+  // XU LI SERVICE CHO BACK-END
 }

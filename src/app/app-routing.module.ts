@@ -8,6 +8,7 @@ import {ChangePassComponent} from './C.COMPONENT/2.UserManager/change-pass/chang
 import {DashboardComponent} from './C.COMPONENT/2.UserManager/dashboard/dashboard.component';
 import {CreateSongComponent} from './C.COMPONENT/3.SongManager/create-song/create-song.component';
 import {ContentComponent} from './C.COMPONENT/1.Layout/content/content.component';
+import {CaroselComponent} from './C.COMPONENT/1.Layout/content/carosel/carosel.component';
 
 
 const routes: Routes = [
@@ -19,6 +20,7 @@ const routes: Routes = [
   {path: 'auth/changepass', component: ChangePassComponent},
   {path: 'auth/dashboard', component: DashboardComponent},
   {path: 'home/create-song', component: CreateSongComponent},
+  {path: 'home/create-carosel', component: CaroselComponent},
   {path: '', redirectTo: 'home', pathMatch: 'full'}
 ];
 
