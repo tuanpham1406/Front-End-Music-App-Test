@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div id="list-example" class="list-group">
+        <a class="list-group-item list-group-item-action" routerLink="/auth/personal"><i class="fas fa-plus-square"> Create New Song</i></a>
+        <a class="list-group-item list-group-item-action" routerLink="/song/my-playlist"><i class="fas fa-bars"> My Playlist</i></a>
+      </div>
+    </div>
+    <div class="col-9">
+      <p>You can see <code>My Playlist</code> and listen to music or delete song.</p>
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th scope="col"><i class="fas fa-bars"></i></th>
+          <th scope="col" class="col-md-10">Name song</th>
+          <th scope="col" class="col-md-1">Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let myPlaylist of myPlaylist">
+          <th scope="row">{{ myPlaylist.id }}</th>
+
+          <td><a class="namesong" routerLink="/song/play">{{ myPlaylist.name }}</a></td>
+          <td><a routerLink="#"><i class="fas fa-backspace"></i></a></td>
+
+        </tr>
+        </tbody>
+      </table>
+      <div class="d-flex justify-content-between p-2">
+        <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize">
+        </ngb-pagination>
+        <select class="custom-select" style="width: auto" [(ngModel)]="pageSize">
+          <option [ngValue]="2">2 items per page</option>
+          <option [ngValue]="4">4 items per page</option>
+          <option [ngValue]="6">6 items per page</option>
+        </select>
+      </div>
+    </div>
+  </div>
+</div>
