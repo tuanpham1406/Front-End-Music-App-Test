@@ -18,13 +18,7 @@ export class CreateSongComponent implements OnInit {
   // =============OLD ======================
   selectedFiles: FileList;
   currentFileUpload: FileUpload;
-  progress: { percentage: number } = {percentage: 0};
-
   form: any = {};
-
-  isCreateSong = false;
-  isCreateSongFailed = false;
-  errorMessage = '';
   // =========================================
   songInfor: SongInfor[] = [];
   createSongInfo: SongInfor;
@@ -52,7 +46,6 @@ export class CreateSongComponent implements OnInit {
       category: ['', Validators.required],
       lyrics: ['', Validators.required],
     });
-
     this.songService
       .getSong()
       .subscribe(
@@ -66,7 +59,9 @@ export class CreateSongComponent implements OnInit {
       .pipe(map(changes =>
         changes.map(c => ({key: c.payload.key, ...c.payload.val()}))))
       .subscribe(
-        fileUploads => {this.fileAvatarAll = fileUploads; });
+        fileUploads => {
+          this.fileAvatarAll = fileUploads;
+        });
 
     this.songService
       .getFileUploads(100)
@@ -75,16 +70,16 @@ export class CreateSongComponent implements OnInit {
         changes.map(c => ({key: c.payload.key, ...c.payload.val()}))))
       .subscribe(
         fileUploads => {
-          this.fileMp3All = fileUploads; });
+          this.fileMp3All = fileUploads;
+        });
 
   }
 
-  // // FIREBASE SERVER
+  // FIREBASE SERVER
   selectAvatar(event) {
     this.selectedFiles = event.target.files;
     this.uploadAvatar();
   }
-
   uploadAvatar() {
     const file = this.selectedFiles.item(0);
     this.selectedFiles = undefined;
@@ -97,7 +92,6 @@ export class CreateSongComponent implements OnInit {
     this.selectedFiles = event.target.files;
     this.upload();
   }
-
   upload() {
     const file = this.selectedFiles.item(0);
     this.selectedFiles = undefined;
@@ -105,28 +99,6 @@ export class CreateSongComponent implements OnInit {
     this.currentFileUpload = new FileUpload(file);
     this.songService.pushFileToStorage(this.currentFileUpload);
   }
-
-  // GET All URL
-  // getAllFile() {
-  //   debugger;
-  //   this.songService
-  //     .getAvatarUploads(100)
-  //     .snapshotChanges()
-  //     .pipe(map(changes =>
-  //       changes.map(c => ({key: c.payload.key, ...c.payload.val()}))))
-  //     .subscribe(
-  //       fileUploads => {this.fileAvatarAll = fileUploads; });
-  //
-  //   this.songService
-  //     .getFileUploads(100)
-  //     .snapshotChanges()
-  //     .pipe(map(changes =>
-  //       changes.map(c => ({key: c.payload.key, ...c.payload.val()}))))
-  //     .subscribe(
-  //       fileUploads => {
-  //         this.fileMp3All = fileUploads; });
-  // }
-
 
   // BACK-END SERVER
   createSong() {
@@ -147,10 +119,12 @@ export class CreateSongComponent implements OnInit {
         .subscribe(
           data => {
             this.songInfor.unshift(data);
-            this.router.navigate(['/home']); },
+            this.router.navigate(['/home']);
+          },
           error => {
             console.log(error);
-            this.songInfor = null; }
+            this.songInfor = null;
+          }
         );
     }
   }
