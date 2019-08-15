@@ -9,9 +9,15 @@ import {SongService} from '../../../B.SERVICE/2.SongManager/song.service';
   styleUrls: ['./list-song.component.scss']
 })
 export class ListSongComponent implements OnInit {
-
+  listSong: any[];
   constructor(private songService: SongService) { }
 
   ngOnInit() {
+    this.songService
+      .getSong()
+      .subscribe(
+        data => {this.listSong = data; },
+        error => {console.log(error); }
+      );
   }
 }

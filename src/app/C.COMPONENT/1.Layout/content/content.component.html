@@ -1,34 +1,4 @@
 <div class="container">
-    <div class="content-carosel" style="margin-bottom: 50px">
-      <div id="tdd-carosel" class="carousel slide" data-ride="carousel">
-
-        <!-- Indicators -->
-        <ul class="carousel-indicators">
-          <li data-target="#tdd-carosel" data-slide-to="0" class="active"></li>
-          <li data-target="#tdd-carosel" data-slide-to="1"></li>
-          <li data-target="#tdd-carosel" data-slide-to="2"></li>
-          <li data-target="#tdd-carosel" data-slide-to="3"></li>
-        </ul>
-
-        <!-- The slideshow -->
-        <div class="carousel-inner" *ngFor="let file of fileCaroselUploads">
-          <div class="carousel-item active">
-            <img src="{{file.url}}" alt="{{file.name}}">
-          </div>
-        </div>
-
-        <!-- Left and right controls -->
-        <a class="carousel-control-prev" href="#tdd-carosel" data-slide="prev">
-          <span class="carousel-control-prev-icon"></span>
-        </a>
-        <a class="carousel-control-next" href="#tdd-carosel" data-slide="next">
-          <span class="carousel-control-next-icon"></span>
-        </a>
-
-      </div>
-
-    </div>
-
     <h3 style="font-family: '#9Slide01 Noi dung ngan'">LIST SONG</h3>
     <div class="list-song" style="padding-bottom: 10px ">
       <div class="row list-song-detail">

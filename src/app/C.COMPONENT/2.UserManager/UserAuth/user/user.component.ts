@@ -32,6 +32,6 @@ export class UserComponent implements OnInit {
 
   logout() {
     this.token.Logout();
-    this.router.navigate(['/home']);
+    window.location.reload();
   }
 }

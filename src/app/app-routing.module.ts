@@ -9,18 +9,20 @@ import {DashboardComponent} from './C.COMPONENT/2.UserManager/dashboard/dashboar
 import {CreateSongComponent} from './C.COMPONENT/3.SongManager/create-song/create-song.component';
 import {ContentComponent} from './C.COMPONENT/1.Layout/content/content.component';
 import {CaroselComponent} from './C.COMPONENT/1.Layout/content/carosel/carosel.component';
+import {PersonalComponent} from './C.COMPONENT/3.SongManager/personal/personal.component';
 
 
 const routes: Routes = [
-  {path: 'home', component: AppComponent},
-  {path: 'home/main', component: ContentComponent},
-  {path: 'home/auth/login', component: LoginComponent},
+  {path: '', component: AppComponent},
+  {path: 'home', component: ContentComponent},
+  {path: 'auth/login', component: LoginComponent},
   {path: 'auth/register', component: RegisterComponent},
   {path: 'auth/updateinfor', component: UpdateInforComponent},
   {path: 'auth/changepass', component: ChangePassComponent},
   {path: 'auth/dashboard', component: DashboardComponent},
-  {path: 'home/create-song', component: CreateSongComponent},
-  {path: 'home/create-carosel', component: CaroselComponent},
+ // {path: 'song/my-playlist', component: ListSongComponent},
+  {path: 'auth/personal', component: PersonalComponent},
+ // {path: 'song/play', component: DetailSongComponent},
   {path: '', redirectTo: 'home', pathMatch: 'full'}
 ];
 

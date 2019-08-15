@@ -1,49 +1,61 @@
+Skip to content
+Search or jump to…
+
+Pull requests
+Issues
+Marketplace
+Explore
+
+@DT2K50
+1
+00tuanpham1406/Front-End-Music-App-Test
+Code Issues 0 Pull requests 0 Projects 0 Wiki Security Insights
+Front-End-Music-App-Test/src/app/C.COMPONENT/1.Layout/header/header.component.html
+@tuanpham1406 tuanpham1406 song-create: fix routerLink,
+c935d01 17 minutes ago
+@DT2K50@tuanpham1406
+48 lines (47 sloc)  2.01 KB
+
 <div class="header" style="margin-top: 100px">
   <header class="header-area">
     <div class="main-header-area">
       <div class="classy-nav-container breakpoint-off">
         <nav class="classy-navbar justify-content-between" id="pocaNav">
           <a class="nav-brand" routerLink="home">
-            <img src="" alt="" width="100px"></a>
-
+            <img src="./assets/img/logo-team/logo.png" alt="" width="100px"></a>
           <div class="classy-navbar-toggler">
             <span class="navbarToggler"></span>
           </div>
-
           <div class="classy-menu">
             <div class="classycloseIcon">
               <div class="cross-wrap">
                 <span class="top"></span>
                 <span class="bottom"></span></div>
             </div>
-
             <div class="classynav">
               <ul id="nav">
-                <li class="current-item"><a [routerLink]="['content']">TRANG CHỦ</a></li>
-                <li><a href="#">TOP100</a></li>
-                <li><a href="#">CA SỸ</a></li>
-                <li><a href="#">CHỦ ĐỀ</a></li>
-                <li><a href="#">ALBUM</a></li>
-                <li><a href="#">CÁ NHÂN</a></li>
-                <li *ngIf="authority"><a [routerLink]="['create-song']">TẠO BÀI HÁT</a></li>
-                <li *ngIf="authority"><a [routerLink]="['create-carosel']">TẠO CAROSEL</a></li>
+                <li class="current-item"><a routerLink="home">HOME</a></li>
+                <li><a routerLink="#">Top100</a></li>
+                <li><a routerLink="#">CHỦ ĐỀ</a></li>
+                <li><a routerLink="#">SINGER</a></li>
+                <li><a routerLink="#">ALBUM</a></li>
+                <li><a routerLink="/auth/personal">CÁ NHÂN</a></li>
               </ul>
-
               <div class="top-search-area">
                 <form method="post">
-                  <input type="search" name="top-search-bar" class="form-control" placeholder="Tìm bài hát hoặc ca sỹ...">
-                  <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                  <input type="search" name="top-search-bar" class="form-control"
+                         placeholder="Tìm bài hát hoặc ca sỹ...">
+                  <button type="submit"><i class="fas fa-search"></i></button>
                 </form>
               </div>
-
               <div class="nav navbar-nav">
                 <ul>
                   <li *ngIf="authority"><app-user></app-user></li>
-                  <li *ngIf="!authority" class="nav-item"><a [routerLink]="['auth/login']">Login</a></li>
-                  <li *ngIf="!authority" class="nav-item"><a [routerLink]="['auth/register']">Register</a></li>
+                  <li *ngIf="!authority" class="nav-item" style="font-size: 60%"><a routerLink="auth/login">Login</a></li>
+                  <li *ngIf="!authority" class="nav-item" style="font-size: 60%"><a
+                    routerLink="auth/register">Register</a></li>
                 </ul>
               </div>
-
             </div>
           </div>
         </nav>
@@ -51,4 +63,4 @@
     </div>
   </header>
 </div>
-<router-outlet></router-outlet>
+

@@ -5,6 +5,7 @@ import {FileUpload} from '../../A.MODEL/1.Request/SongManager/FileUpload';
 import * as firebase from 'firebase';
 import {Observable} from 'rxjs';
 import {SongInfor} from '../../A.MODEL/1.Request/SongManager/Song-Infor';
+import {FormGroup} from '@angular/forms';
 
 
 @Injectable({
@@ -14,7 +15,7 @@ export class SongService {
   private basePathAvatar = 'dangduc/avatar';
   private basePathFile = 'dangduc/fileMp3';
 
-  private baseSongInfo = 'http://localhost:8080/api/songs';
+  private songUrl = 'http://localhost:8080/api/songs';
 
   constructor(
     private db: AngularFireDatabase,
@@ -22,75 +23,60 @@ export class SongService {
   ) {
   }
 
-  // XU LI SERVICE CHO DATA BASSE
-  pushFileToStorage(fileUpload: FileUpload, progress: { percentage: number }) {
+  // XU LI SERVICE CHO FIREBASE
+  public pushFileToStorage(fileUpload: FileUpload) {
     const storageRef = firebase.storage().ref();
-    const uploadTask = storageRef.child(`${this.basePathFile}/${fileUpload.file.name}`).put(fileUpload.file);
+    const uploadTask = storageRef
+      .child(`${this.basePathFile}/${fileUpload.file.name}`)
+      .put(fileUpload.file);
 
     uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
-      (snapshot) => {
-        // in progress
-        const snap = snapshot as firebase.storage.UploadTaskSnapshot;
-        progress.percentage = Math.round((snap.bytesTransferred / snap.totalBytes) * 100);
-      },
-      (error) => {
-        // fail
-        console.log(error);
-      },
-      () => {
-        // success
-        uploadTask.snapshot.ref.getDownloadURL().then(downloadURL => {
-          console.log('File available at', downloadURL);
-          fileUpload.url = downloadURL;
-          fileUpload.name = fileUpload.file.name;
-          this.saveFileData(fileUpload);
-        });
+      (snapshot) => {const snap = snapshot as firebase.storage.UploadTaskSnapshot; },
+              (error) => { console.log(error); },
+          () => {
+                uploadTask.snapshot.ref
+                  .getDownloadURL()
+                  .then(downloadURL => {
+                    console.log('File available at', downloadURL);
+                    fileUpload.url = downloadURL;
+                    fileUpload.name = fileUpload.file.name;
+                    this.saveFileData(fileUpload); });
       }
     );
-  }
+  } // Push file
 
   private saveFileData(fileUpload: FileUpload) {
     this.db.list(`${this.basePathFile}/`).push(fileUpload);
-  }
+  } // Save file
 
-  getFileUploads(numberItems): AngularFireList<FileUpload> {
-    return this.db.list(this.basePathFile, ref =>
-      ref.limitToLast(numberItems));
-  }
 
-  deleteFileUpload(fileUpload: FileUpload) {
+  public getFileUploads(numberItems): AngularFireList<FileUpload> {
+    return this.db.list(this.basePathFile, ref => ref.limitToLast(numberItems));
+  }  // Get file
+
+  private deleteFileUpload(fileUpload: FileUpload) {
     this.deleteFileDatabase(fileUpload.key)
-      .then(() => {
-        this.deleteFileStorage(fileUpload.name);
-      })
+      .then(() => {this.deleteFileStorage(fileUpload.name); })
       .catch(error => console.log(error));
-  }
+  } // Delete file
 
   private deleteFileDatabase(key: string) {
     return this.db.list(`${this.basePathFile}/`).remove(key);
-  }
+  } // Delete file from Database
 
   private deleteFileStorage(name: string) {
     const storageRef = firebase.storage().ref();
     storageRef.child(`${this.basePathFile}/${name}`).delete();
-  }
+  } // Delete file from Storage
 
-  pushAvatarToStorage(fileUpload: FileUpload, progress: { percentage: number }) {
+  pushAvatarToStorage(fileUpload: FileUpload) {
     const storageReference = firebase.storage().ref();
     const uploadTaskAvatar = storageReference.child(`${this.basePathAvatar}/${fileUpload.file.name}`).put(fileUpload.file);
 
     uploadTaskAvatar.on(firebase.storage.TaskEvent.STATE_CHANGED,
-      (snapshot) => {
-        // in progress
-        const snap = snapshot as firebase.storage.UploadTaskSnapshot;
-        progress.percentage = Math.round((snap.bytesTransferred / snap.totalBytes) * 100);
-      },
-      (error) => {
-        // fail
-        console.log(error);
-      },
+      (snapshot) => {const snap = snapshot as firebase.storage.UploadTaskSnapshot; },
+      (error) => {console.log(error); },
       () => {
-        // success
         uploadTaskAvatar.snapshot.ref.getDownloadURL().then(downloadURL => {
           console.log('File available at', downloadURL);
           fileUpload.url = downloadURL;
@@ -129,21 +115,22 @@ export class SongService {
 
   // XU LI SERVICE CHO BACK-END
   getSong(): Observable<SongInfor[]> {
-    return this.http.get<SongInfor[]>(this.baseSongInfo);
+    return this.http.get<SongInfor[]>(this.songUrl);
   }
 
   getSongById(id: number): Observable<SongInfor> {
-    return this.http.get<SongInfor>(`${this.baseSongInfo}/${id}`);
+    return this.http.get<SongInfor>(`${this.songUrl}/${id}`);
   }
 
   createSong(song: SongInfor): Observable<SongInfor> {
-    return this.http.post<SongInfor>(this.baseSongInfo, song);
+    return this.http.post<SongInfor>(this.songUrl, song);
   }
 
   updateSong(song: SongInfor): Observable<SongInfor> {
-    return this.http.patch<SongInfor>(`${this.baseSongInfo}/${song.id}`, song);
+    return this.http.patch<SongInfor>(`${this.songUrl}/${song.id}`, song);
   }
+
   deleteSong(id: number): Observable<SongInfor> {
-    return this.http.delete<SongInfor>(`${this.baseSongInfo}/${id}`);
+    return this.http.delete<SongInfor>(`${this.songUrl}/${id}`);
   }
 }
