@@ -1,24 +1,26 @@
 <div class="container">
-  <app-carosel></app-carosel>
-  <h3 style="font-family: '#9Slide01 Noi dung ngan'">LIST SONG</h3>
-    <div class="list-song" style="padding-bottom: 10px ">
-      <div class="row list-song-detail">
-
+  <div class="card">
+    <app-carosel></app-carosel>
+  </div>
+  <div class="card">
+    <div class="card-body">
+      <div class="col-md-4">
+        <h3 routerLink="#">New Song <i class="fas fa-chevron-right fas-1g" style="font-size: 80%"></i></h3>
+      </div>
+      <div class="list-song" style="padding-bottom: 10px ">
+        <div class="row list-song-detail">
           <div class="list-song-detail-infor col-sm-3">
-
             <div class="row list-song-detail-infor-avatar" *ngFor="let file of fileAvatarUploads">
               <img src="{{file.url}}" alt="Ảnh 1" style="width: 300px">
             </div>
-
             <div class="row list-song-detail-infor-mp3" *ngFor="let file of fileMp3Uploads">
               <audio controls>
                 <source src="{{file.url}}" type="audio/mpeg">
               </audio>
             </div>
-
-         </div>
-
+          </div>
+        </div>
       </div>
     </div>
-
+  </div>
 </div>
