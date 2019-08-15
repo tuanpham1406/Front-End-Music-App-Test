@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {LoginInfo} from '../../../A.MODEL/1.Request/UserManager/Login-Infor';
 import {AuthService} from '../../../B.SERVICE/1.UserManager/auth/auth.service';
 import {TokenStorageService} from '../../../B.SERVICE/1.UserManager/token/token-storage.service';
@@ -31,7 +31,6 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    debugger;
     console.log(this.form);
     this.loginInfo = new LoginInfo(
       this.form.username,
@@ -39,19 +38,21 @@ export class LoginComponent implements OnInit {
 
     this.authService.loginAuth(this.loginInfo).subscribe(
       data => {
-                  console.log(data);
-                  this.tokenStorage.saveToken(data.accessToken);
-                  this.tokenStorage.saveUsername(data.username);
-                  this.tokenStorage.saveAuthorities(data.authorities);
+        console.log(data);
+        this.tokenStorage.saveToken(data.accessToken);
+        this.tokenStorage.saveUsername(data.username);
+        this.tokenStorage.saveAuthorities(data.authorities);
 
-                  this.isLoginFailed = false;
-                  this.isLoggedIn = true;
-                  this.roles = this.tokenStorage.getAuthorities();
-                  this.router.navigate(['/home']); },
+        this.isLoginFailed = false;
+        this.isLoggedIn = true;
+        this.roles = this.tokenStorage.getAuthorities();
+        window.location.reload();
+      },
       error => {
-                  console.log(error);
-                  this.errorMessage = error.error.message;
-                  this.isLoginFailed = true; });
+        console.log(error);
+        this.errorMessage = error.error.message;
+        this.isLoginFailed = true;
+      });
   }
 
 }
