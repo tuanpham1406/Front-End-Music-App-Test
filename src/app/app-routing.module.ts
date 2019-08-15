@@ -1,15 +1,15 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {Routes, RouterModule} from '@angular/router';
 import {AppComponent} from './app.component';
 import {LoginComponent} from './C.COMPONENT/2.UserManager/login/login.component';
 import {RegisterComponent} from './C.COMPONENT/2.UserManager/register/register.component';
 import {UpdateInforComponent} from './C.COMPONENT/2.UserManager/update-infor/update-infor.component';
 import {ChangePassComponent} from './C.COMPONENT/2.UserManager/change-pass/change-pass.component';
 import {DashboardComponent} from './C.COMPONENT/2.UserManager/dashboard/dashboard.component';
-import {CreateSongComponent} from './C.COMPONENT/3.SongManager/create-song/create-song.component';
 import {ContentComponent} from './C.COMPONENT/1.Layout/content/content.component';
-import {CaroselComponent} from './C.COMPONENT/1.Layout/content/carosel/carosel.component';
 import {PersonalComponent} from './C.COMPONENT/3.SongManager/personal/personal.component';
+import {ListSongComponent} from './C.COMPONENT/3.SongManager/list-song/list-song.component';
+import {DetailSongComponent} from './C.COMPONENT/3.SongManager/detail-song/detail-song.component';
 
 
 const routes: Routes = [
@@ -20,9 +20,9 @@ const routes: Routes = [
   {path: 'auth/updateinfor', component: UpdateInforComponent},
   {path: 'auth/changepass', component: ChangePassComponent},
   {path: 'auth/dashboard', component: DashboardComponent},
- // {path: 'song/my-playlist', component: ListSongComponent},
+  {path: 'song/my-playlist', component: ListSongComponent},
   {path: 'auth/personal', component: PersonalComponent},
- // {path: 'song/play', component: DetailSongComponent},
+  {path: 'song/play', component: DetailSongComponent},
   {path: '', redirectTo: 'home', pathMatch: 'full'}
 ];
 
@@ -30,4 +30,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}
