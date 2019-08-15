@@ -18,21 +18,23 @@
               </div>
             </div> <!--Old Password-->
 
-            <div style="margin-bottom: 25px" class="form-group">
-              <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-              <div class="form-group">
-                <label for="password">New Password</label>
-                <input type="password" name = "newPassword" class="form-control" [(ngModel)]="form.newPassword" #newPassword = 'ngModel'>
-              </div>
-            </div> <!--New Password-->
+            <fieldset formGroupName="pwGroup">
+              <div style="margin-bottom: 25px" class="form-group row">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                <div class="form-group">
+                  <label for="password">New Password</label>
+                  <input type="password" name = "newPassword" class="form-control" [(ngModel)]="form.newPassword" #newPassword = 'ngModel'>
+                </div>
+              </div> <!--New Password-->
 
-            <div style="margin-bottom: 25px" class="form-group">
-              <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-              <div class="form-group">
-                <label for="confirmNewPassword">Confirm New Password</label>
-                <input type="password" name = "confirmNewPassword" class="form-control" [(ngModel)]="form.confirmNewPassword" #confirmNewPassword = 'ngModel'>
-              </div>
-            </div> <!-- Confirm New Password-->
+              <div style="margin-bottom: 25px" class="form-group row">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                <div class="form-group">
+                  <label for="confirmNewPassword">Confirm New Password</label>
+                  <input type="password" name = "confirmNewPassword" class="form-control" [(ngModel)]="form.confirmNewPassword" #confirmNewPassword = 'ngModel'>
+                </div>
+              </div> <!-- Confirm New Password-->
+            </fieldset>
 
 
 
