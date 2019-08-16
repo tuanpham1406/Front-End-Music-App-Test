@@ -15,20 +15,18 @@ import {map} from 'rxjs/operators';
   styleUrls: ['./create-song.component.scss']
 })
 export class CreateSongComponent implements OnInit {
-  // =============OLD ======================
-  selectedFiles: FileList;
-  currentFileUpload: FileUpload;
+  selectedMp3Files: FileList;
+  selectedAvatarFile: FileList;
+  currentAvatarFileUpload: FileUpload;
+  currentMp3FileUpload: FileUpload;
   form: any = {};
   // =========================================
   songInfor: SongInfor[] = [];
   createSongInfo: SongInfor;
   songForm: FormGroup;
 
-  fileMp3All: any[] = [];
-  fileAvatarAll: any[] = [];
-
-  fileMp3Url: string;
-  fileAvatarUrl: string;
+  // fileMp3All: any[] = [];
+  // fileAvatarAll: any[] = [];
 
 
   constructor(
@@ -50,60 +48,50 @@ export class CreateSongComponent implements OnInit {
       .getSong()
       .subscribe(
         data => (this.songInfor = data),
-        error => (this.songInfor = [])
-      );
+        error => (this.songInfor = []));
 
-    this.songService
-      .getAvatarUploads(100)
-      .snapshotChanges()
-      .pipe(map(changes =>
-        changes.map(c => ({key: c.payload.key, ...c.payload.val()}))))
-      .subscribe(
-        fileUploads => {
-          this.fileAvatarAll = fileUploads;
-        });
-
-    this.songService
-      .getFileUploads(100)
-      .snapshotChanges()
-      .pipe(map(changes =>
-        changes.map(c => ({key: c.payload.key, ...c.payload.val()}))))
-      .subscribe(
-        fileUploads => {
-          this.fileMp3All = fileUploads;
-        });
-
+    // this.songService
+    //   .getAvatarUploads(100)
+    //   .snapshotChanges()
+    //   .pipe(map(changes => changes.map(c => ({key: c.payload.key, ...c.payload.val()}))))
+    //   .subscribe(fileUploads => {
+    //     this.fileAvatarAll = fileUploads;
+    //   });
+    //
+    // this.songService
+    //   .getFileUploads(100)
+    //   .snapshotChanges()
+    //   .pipe(map(changes => changes.map(c => ({key: c.payload.key, ...c.payload.val()}))))
+    //   .subscribe(fileUploads => {
+    //     this.fileMp3All = fileUploads;
+    //   });
   }
 
   // FIREBASE SERVER
   selectAvatar(event) {
-    this.selectedFiles = event.target.files;
-    this.uploadAvatar();
+    this.selectedAvatarFile = event.target.files;
   }
   uploadAvatar() {
-    const file = this.selectedFiles.item(0);
-    this.selectedFiles = undefined;
+    const avatarFile = this.selectedAvatarFile.item(0);
+    this.selectedAvatarFile = undefined;
 
-    this.currentFileUpload = new FileUpload(file);
-    this.songService.pushAvatarToStorage(this.currentFileUpload);
+    this.currentAvatarFileUpload = new FileUpload(avatarFile);
+    this.songService.pushAvatarToStorage(this.currentAvatarFileUpload);
   }
 
   selectFile(event) {
-    this.selectedFiles = event.target.files;
-    this.upload();
+    this.selectedMp3Files = event.target.files;
   }
-  upload() {
-    const file = this.selectedFiles.item(0);
-    this.selectedFiles = undefined;
+  uploadMp3() {
+    const mp3File = this.selectedMp3Files.item(0);
+    this.selectedMp3Files = undefined;
 
-    this.currentFileUpload = new FileUpload(file);
-    this.songService.pushFileToStorage(this.currentFileUpload);
+    this.currentMp3FileUpload = new FileUpload(mp3File);
+    this.songService.pushFileToStorage(this.currentMp3FileUpload);
   }
 
   // BACK-END SERVER
   createSong() {
-    this.fileMp3Url = this.fileMp3All[this.fileMp3All.length - 1].url;
-    this.fileAvatarUrl = this.fileAvatarAll[this.fileAvatarAll.length - 1].url;
     if (this.songForm.valid) {
       const {value} = this.songForm;
       this.createSongInfo = new SongInfor(
@@ -111,14 +99,14 @@ export class CreateSongComponent implements OnInit {
         value.singer,
         value.category,
         value.lyrics,
-        this.fileAvatarUrl,
-        this.fileMp3Url
+        this.currentAvatarFileUpload.url,
+        this.currentMp3FileUpload.url
       );
       this.songService
         .createSong(this.createSongInfo)
         .subscribe(
           data => {
-            this.songInfor.unshift(data);
+            // this.songInfor.unshift(data);
             this.router.navigate(['/home']);
           },
           error => {

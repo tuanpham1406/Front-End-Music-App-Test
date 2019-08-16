@@ -25,6 +25,7 @@ export class SongService {
 
   // XU LI SERVICE CHO FIREBASE
   public pushFileToStorage(fileUpload: FileUpload) {
+    debugger;
     const storageRef = firebase.storage().ref();
     const uploadTask = storageRef
       .child(`${this.basePathFile}/${fileUpload.file.name}`)
@@ -45,8 +46,11 @@ export class SongService {
     );
   } // Push file
 
-  private saveFileData(fileUpload: FileUpload) {
-    this.db.list(`${this.basePathFile}/`).push(fileUpload);
+  public saveFileData(fileUpload: FileUpload) {
+    this.db
+      .list(`${this.basePathFile}/`)
+      .push(fileUpload)
+      .then(  result => {console.log('saveFileData', result); });
   } // Save file
 
 

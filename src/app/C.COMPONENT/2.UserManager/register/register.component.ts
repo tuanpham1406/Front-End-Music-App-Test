@@ -1,7 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {RegisterInfo} from '../../../A.MODEL/1.Request/UserManager/Register-Infor';
 import {AuthService} from '../../../B.SERVICE/1.UserManager/auth/auth.service';
 import {FileUpload} from '../../../A.MODEL/1.Request/SongManager/FileUpload';
+import {UserService} from '../../../B.SERVICE/1.UserManager/user/user.service';
+import {map} from 'rxjs/operators';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {HttpClient} from '@angular/common/http';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -9,42 +14,68 @@ import {FileUpload} from '../../../A.MODEL/1.Request/SongManager/FileUpload';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-  form: any = {};
-  registerInfo: RegisterInfo;
-  isSignedUp = false;
-  isSignUpFailed = false;
-  errorMessage = '';
-
   selectedFiles: FileList;
   currentFileUpload: FileUpload;
-  constructor(private authService: AuthService) {}
+  form: any = {};
+  // ==============================================
+  registerForm: RegisterInfo;
+  errorMessage = '';
 
-  ngOnInit() {}
+  constructor(
+    private authService: AuthService,
+    private userService: UserService,
+    private http: HttpClient,
+    private router: Router,
+    private route: ActivatedRoute,
+    private fb: FormBuilder) {
+  }
 
-  onSubmit() {
-    console.log(this.form);
+  ngOnInit() {
+    this.registerForm = this.fb.group({
+      firstName: ['', [Validators.required]],
+      lastName: ['', [Validators.required]],
+      usernamr: ['', [Validators.required]],
+      email: ['', [Validators.required]],
+      password: ['', [Validators.required]],
+      confirmPassword: ['', [Validators.required]],
+    });
+  }
 
-    this.registerInfo = new RegisterInfo(
+  selecAvatar(event) {
+    debugger;
+    this.selectedFiles = event.target.files;
+    console.log(this.selectedFiles);
+  }
+
+  upload() {
+    debugger;
+    const file = this.selectedFiles.item(0);
+    this.selectedFiles = undefined;
+
+    this.currentFileUpload = new FileUpload(file);
+    this.userService.pushAvatarToStorage(this.currentFileUpload);
+    console.log(this.currentFileUpload);
+  }
+
+  RegisterAccount() {
+    this.registerForm = new RegisterInfo(
       this.form.firstName,
       this.form.lastName,
       this.form.username,
       this.form.email,
       this.form.password,
-      this.form.confirmPassWord
+      this.currentFileUpload.url
     );
+
     this.authService
-      .registerAuth(this.registerInfo)
+      .registerAuth(this.registerForm)
       .subscribe(
         data => {
           console.log(data);
-          this.isSignedUp = true;
-          this.isSignUpFailed = false; },
+        },
         error => {
           console.log(error);
           this.errorMessage = error.error.message;
-          this.isSignUpFailed = true; });
-
-
-
+        });
   }
 }

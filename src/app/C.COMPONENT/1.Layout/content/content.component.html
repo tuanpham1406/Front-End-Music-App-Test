@@ -3,15 +3,15 @@
     <div class="list-song" style="padding-bottom: 10px ">
       <div class="row list-song-detail">
 
-          <div class="list-song-detail-infor col-sm-3">
+          <div class="list-song-detail-infor col-sm-3" *ngFor="let song of songInfor">
 
-            <div class="row list-song-detail-infor-avatar" *ngFor="let file of fileAvatarUploads">
-              <img src="{{file.url}}" alt="Ảnh 1" style="width: 300px">
+            <div class="row list-song-detail-infor-avatar">
+              <img src="{{song.avatarUrl}}" alt="{{song.nameSong}}" style="width: 300px">
             </div>
 
             <div class="row list-song-detail-infor-mp3" *ngFor="let file of fileMp3Uploads">
               <audio controls>
-                <source src="{{file.url}}" type="audio/mpeg">
+                <source src="{{song.mp3Url}}" type="audio/mpeg">
               </audio>
             </div>
 

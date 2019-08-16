@@ -20,7 +20,7 @@ const routes: Routes = [
   {path: 'auth/updateinfor', component: UpdateInforComponent},
   {path: 'auth/changepass', component: ChangePassComponent},
   {path: 'auth/dashboard', component: DashboardComponent},
- // {path: 'song/my-playlist', component: ListSongComponent},
+  // {path: 'song/my-playlist', component: ListSongComponent},
   {path: 'auth/personal', component: PersonalComponent},
  // {path: 'song/play', component: DetailSongComponent},
   {path: '', redirectTo: 'home', pathMatch: 'full'}

@@ -1,54 +1,57 @@
 <div class="container">
   <div class="create-song offset-4">
-    <div  class="card" style="width: 28rem">
+    <div class="card" style="width: 28rem">
       <div class="card-body">
-        <div class="panel panel-info" >
+        <div class="panel panel-info">
 
-        <div class="panel-heading">
-          <div class="panel-title"><h2>Create Song</h2></div>
-        </div> <!--Header-->
+          <div class="panel-heading">
+            <div class="panel-title"><h2>Create Song</h2></div>
+          </div> <!--Header-->
 
-        <div class="panel-body" style="padding-top:30px" >
-          <div style="display:none" id="createsong-alert" class="alert alert-danger col-sm-12"></div>
-          <form [formGroup]="songForm" (ngSubmit)="createSong()"  class="col-md-6">
+          <div class="panel-body" style="padding-top:30px">
+            <div style="display:none" id="createsong-alert" class="alert alert-danger col-sm-12"></div>
+            <form [formGroup]="songForm" (ngSubmit)="createSong()" class="col-md-6">
 
-            <div style="margin-bottom: 25px" class="form-group">
-              <input type="text" class="form-control"
-                     formControlName="nameSong" placeholder="Name'Song">
-            </div> <!--NameSong-->
+              <div style="margin-bottom: 25px" class="form-group">
+                <input type="text" class="form-control"
+                       formControlName="nameSong" placeholder="Name'Song">
+              </div> <!--NameSong-->
 
-            <div style="margin-bottom: 25px" class="form-group">
-              <input type="text" class="form-control"
-                     formControlName="singer" placeholder="Singer">
-            </div> <!--Singer-->
+              <div style="margin-bottom: 25px" class="form-group">
+                <input type="text" class="form-control"
+                       formControlName="singer" placeholder="Singer">
+              </div> <!--Singer-->
 
-            <div style="margin-bottom: 25px" class="form-group">
-              <input type="text" class="form-control"
-                     formControlName="category" placeholder="Category">
-            </div> <!--Category-->
+              <div style="margin-bottom: 25px" class="form-group">
+                <input type="text" class="form-control"
+                       formControlName="category" placeholder="Category">
+              </div> <!--Category-->
 
-            <div style="margin-bottom: 25px" class="form-group">
-              <textarea formControlName="lyrics" id="" cols="30" rows="10" placeholder="Lyrics"></textarea>
-            </div> <!--Lyrics-->
+              <div style="margin-bottom: 25px" class="form-group">
+                <textarea formControlName="lyrics" id="" cols="30" rows="10" placeholder="Lyrics"></textarea>
+              </div> <!--Lyrics-->
 
 
-            <div style="margin-bottom: 25px" class="form-group">
-              <input type="file" (change)="selectAvatar($event)">
-            </div> <!--Choose Avatar-->
+              <div style="margin-bottom: 25px" class="form-group">
+                <input type="file" (change)="selectAvatar($event)">
+                <button type="button" class="btn btn-light" (click)="uploadAvatar()">Save Avatar</button>
+              </div> <!--Choose Avatar-->
 
-            <div style="margin-bottom: 25px" class="form-group">
-              <input type="file" (change)="selectFile($event)">
-            </div> <!--Choose File-->
+              <div style="margin-bottom: 25px" class="form-group">
+                <input type="file" (change)="selectFile($event)">
+                <button type="button" class="btn btn-light" (click)="uploadMp3()">Save Avatar</button>
+              </div> <!--Choose File-->
 
-            <div style="margin-top:10px" class="form-group">
-              <div class="col-sm-12 offset-2 controls">
-                <button type="submit" class="btn btn-success"
-                        style="margin-right: 10px">Create Song</button>
-              </div>
-            </div> <!--CreateSong Button-->
-          </form>
-        </div> <!--Body-->
-      </div>
+              <div style="margin-top:10px" class="form-group">
+                <div class="col-sm-12 offset-2 controls">
+                  <button type="submit" class="btn btn-success" [hidden]="uploadMp3()"
+                          style="margin-right: 10px">Create Song
+                  </button>
+                </div>
+              </div> <!--CreateSong Button-->
+            </form>
+          </div> <!--Body-->
+        </div>
       </div>
     </div>
   </div>
