@@ -23,6 +23,7 @@ import { ContentComponent } from './C.COMPONENT/1.Layout/content/content.compone
 import { CaroselComponent } from './C.COMPONENT/1.Layout/content/carosel/carosel.component';
 import { PersonalComponent } from './C.COMPONENT/3.SongManager/personal/personal.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { SingerComponent } from './singer/singer.component';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     DetailSongComponent,
     ContentComponent,
     CaroselComponent,
-    PersonalComponent
+    PersonalComponent,
+    SingerComponent
   ],
   imports: [
     BrowserModule,
