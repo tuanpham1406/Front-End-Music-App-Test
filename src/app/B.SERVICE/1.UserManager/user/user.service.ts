@@ -17,7 +17,7 @@ export class UserService {
 
 
   // FIREBASE - API
-  private userAvatarUrl = 'dangduc/users';
+  private userAvatarUrl = 'dangduc/usersAvatar';
 
 
   constructor(private http: HttpClient, private db: AngularFireDatabase) {}

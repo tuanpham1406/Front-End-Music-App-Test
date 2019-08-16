@@ -10,7 +10,7 @@
 
           <div class="panel-body" style="padding-top:30px">
             <div style="display:none" id="createsong-alert" class="alert alert-danger col-sm-12"></div>
-            <form class="form-inline" name="songForm" (ngSubmit)="f.form.valid" #f="ngForm" novalidate>
+            <form class="form-inline" name="form" (ngSubmit)="f.form.valid" #f="ngForm" novalidate>
               <div *ngIf="isCreateSong; else createSongForm">
                 <p class="message-signup">Your created New Song OK.</p>
               </div>
@@ -23,39 +23,29 @@
                       <input type="text" class="form-control"
                              name="nameSong" placeholder="Name Song"
                              [(ngModel)]="form.nameSong"
-                             #nameSong="ngModel" required/>
-                      <div *ngIf="f.submitted && nameSong.invalid">
-                        <div *ngIf="nameSong.errors.required">Name Song is required</div>
-                      </div>
+                             #firstName="ngModel" required/>
                     </div>
 
                     <div style="margin-bottom: 25px" class="form-group">
                       <input type="text" class="form-control"
                              name="singer" placeholder="Singer"
                              [(ngModel)]="form.singer"
-                             #nameSong="ngModel" required/>
-                      <div *ngIf="f.submitted && singer.invalid">
-                        <div *ngIf="singer.errors.required">Singer is required</div>
-                      </div>
+                             #singer="ngModel" required/>
                     </div>
 
                     <div style="margin-bottom: 25px" class="form-group">
                       <input type="text" class="form-control"
                              name="category" placeholder="Category"
                              [(ngModel)]="form.category"
-                             #nameSong="ngModel" required/>
-                      <div *ngIf="f.submitted && category.invalid">
-                        <div *ngIf="category.errors.required">Category is required</div>
-                      </div>
+                             #category="ngModel" required/>
                     </div>
 
                     <div style="margin-bottom: 25px" class="form-group">
-                      <textarea name="lyrics"cols="30" rows="10" placeholder="Lyrics"></textarea>
-                      <div *ngIf="f.submitted && lyrics.invalid">
-                        <div *ngIf="lyrics.errors.required">Lyrics is required</div>
-                      </div>
+                      <input type="text" class="form-control"
+                             name="category" placeholder="lyrics"
+                             [(ngModel)]="form.lyrics"
+                             #lyrics="ngModel" required/>
                     </div>
-
 
                     <div style="margin-bottom: 25px" class="form-group">
                       <input type="file" (change)="selectAvatar($event)" placeholder="Choose Avatar">
