@@ -24,6 +24,9 @@ export class CreateSongComponent implements OnInit {
   songInfor: SongInfor[] = [];
   createSongInfo: SongInfor;
 
+  isCreateSong = false;
+  isCreateSongFail = false;
+
   constructor(
     private songService: SongService,
     private http: HttpClient,
@@ -78,12 +81,14 @@ export class CreateSongComponent implements OnInit {
       .createSong(this.createSongInfo)
       .subscribe(
         data => {
-          // this.songInfor.unshift(data);
+          console.log(data);
+          this.isCreateSong = true;
+          this.isCreateSongFail = false;
           this.router.navigate(['/home']);
         },
         error => {
           console.log(error);
-          this.songInfor = null;
+          this.isCreateSongFail = true;
         }
       );
   }
