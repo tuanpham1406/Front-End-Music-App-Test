@@ -10,45 +10,71 @@
 
           <div class="panel-body" style="padding-top:30px">
             <div style="display:none" id="createsong-alert" class="alert alert-danger col-sm-12"></div>
-            <form [formGroup]="songForm" (ngSubmit)="createSong()" class="col-md-6">
+            <form class="form-inline" name="songForm" (ngSubmit)="f.form.valid" #f="ngForm" novalidate>
+              <div *ngIf="isCreateSong; else createSongForm">
+                <p class="message-signup">Your created New Song OK.</p>
+              </div>
 
-              <div style="margin-bottom: 25px" class="form-group">
-                <input type="text" class="form-control"
-                       formControlName="nameSong" placeholder="Name'Song">
-              </div> <!--NameSong-->
+              <ng-template #createSongForm>
+                <div class="row col-sm-6 d-flex register" style="max-width:500px;">
+                  <form name="form" (ngSubmit)="f.form.valid && createSong()" #f="ngForm" novalidate>
 
-              <div style="margin-bottom: 25px" class="form-group">
-                <input type="text" class="form-control"
-                       formControlName="singer" placeholder="Singer">
-              </div> <!--Singer-->
+                    <div style="margin-bottom: 25px" class="form-group">
+                      <input type="text" class="form-control"
+                             name="nameSong" placeholder="Name Song"
+                             [(ngModel)]="form.nameSong"
+                             #nameSong="ngModel" required/>
+                      <div *ngIf="f.submitted && nameSong.invalid">
+                        <div *ngIf="nameSong.errors.required">Name Song is required</div>
+                      </div>
+                    </div>
 
-              <div style="margin-bottom: 25px" class="form-group">
-                <input type="text" class="form-control"
-                       formControlName="category" placeholder="Category">
-              </div> <!--Category-->
+                    <div style="margin-bottom: 25px" class="form-group">
+                      <input type="text" class="form-control"
+                             name="singer" placeholder="Singer"
+                             [(ngModel)]="form.singer"
+                             #nameSong="ngModel" required/>
+                      <div *ngIf="f.submitted && singer.invalid">
+                        <div *ngIf="singer.errors.required">Singer is required</div>
+                      </div>
+                    </div>
 
-              <div style="margin-bottom: 25px" class="form-group">
-                <textarea formControlName="lyrics" id="" cols="30" rows="10" placeholder="Lyrics"></textarea>
-              </div> <!--Lyrics-->
+                    <div style="margin-bottom: 25px" class="form-group">
+                      <input type="text" class="form-control"
+                             name="category" placeholder="Category"
+                             [(ngModel)]="form.category"
+                             #nameSong="ngModel" required/>
+                      <div *ngIf="f.submitted && category.invalid">
+                        <div *ngIf="category.errors.required">Category is required</div>
+                      </div>
+                    </div>
+
+                    <div style="margin-bottom: 25px" class="form-group">
+                      <textarea name="lyrics"cols="30" rows="10" placeholder="Lyrics"></textarea>
+                      <div *ngIf="f.submitted && lyrics.invalid">
+                        <div *ngIf="lyrics.errors.required">Lyrics is required</div>
+                      </div>
+                    </div>
 
 
-              <div style="margin-bottom: 25px" class="form-group">
-                <input type="file" (change)="selectAvatar($event)">
-                <button type="button" class="btn btn-light" (click)="uploadAvatar()">Save Avatar</button>
-              </div> <!--Choose Avatar-->
+                    <div style="margin-bottom: 25px" class="form-group">
+                      <input type="file" (change)="selectAvatar($event)" placeholder="Choose Avatar">
+                      <button type="button" class="btn btn-success" (click)="uploadAvatar()">Save Avatar</button>
+                    </div> <!--Choose Avatar-->
 
-              <div style="margin-bottom: 25px" class="form-group">
-                <input type="file" (change)="selectFile($event)">
-                <button type="button" class="btn btn-light" (click)="uploadMp3()">Save Avatar</button>
-              </div> <!--Choose File-->
 
-              <div style="margin-top:10px" class="form-group">
-                <div class="col-sm-12 offset-2 controls">
-                  <button type="submit" class="btn btn-success" [hidden]="uploadMp3()"
-                          style="margin-right: 10px">Create Song
-                  </button>
+                    <div style="margin-bottom: 25px" class="form-group">
+                      <input type="file" (change)="selectFile($event)" placeholder="Choose Avatar">
+                      <button type="button" class="btn btn-success" (click)="uploadMp3()">Save File</button>
+                    </div> <!--Choose Avatar-->
+
+                    <div class="form-group">
+                      <button class="btn btn-primary offset-6" style="margin-top: 10px">Create Song</button>
+                    </div>
+                  </form>
                 </div>
-              </div> <!--CreateSong Button-->
+              </ng-template>
+
             </form>
           </div> <!--Body-->
         </div>

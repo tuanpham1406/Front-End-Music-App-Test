@@ -23,12 +23,8 @@ export class UserComponent implements OnInit {
     this.userService
       .getUserBoard()
       .subscribe(
-        data => {
-          this.board = data;
-        },
-        error => {
-          this.errorMessage = `${error.status}: ${JSON.parse(error.error).message}`;
-        });
+        data => { this.board = data; },
+        error => { console.log(error); });
 
     this.info = {
       token: this.token.getToken(),

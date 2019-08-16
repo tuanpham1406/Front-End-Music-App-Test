@@ -93,12 +93,11 @@ export class CreateSongComponent implements OnInit {
   // BACK-END SERVER
   createSong() {
     if (this.songForm.valid) {
-      const {value} = this.songForm;
       this.createSongInfo = new SongInfor(
-        value.nameSong,
-        value.singer,
-        value.category,
-        value.lyrics,
+        this.form.nameSong,
+        this.form.singer,
+        this.form.category,
+        this.form.lyrics,
         this.currentAvatarFileUpload.url,
         this.currentMp3FileUpload.url
       );

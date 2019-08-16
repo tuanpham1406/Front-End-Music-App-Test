@@ -25,7 +25,6 @@ export class SongService {
 
   // XU LI SERVICE CHO FIREBASE
   public pushFileToStorage(fileUpload: FileUpload) {
-    debugger;
     const storageRef = firebase.storage().ref();
     const uploadTask = storageRef
       .child(`${this.basePathFile}/${fileUpload.file.name}`)

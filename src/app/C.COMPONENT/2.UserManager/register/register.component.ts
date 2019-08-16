@@ -19,6 +19,8 @@ export class RegisterComponent implements OnInit {
   form: any = {};
   // ==============================================
   registerForm: RegisterInfo;
+  isRegister = false;
+  isRegisterFail = false;
   errorMessage = '';
 
   constructor(
@@ -31,7 +33,7 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.registerForm = this.fb.group({
+    this.form = this.fb.group({
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
       usernamr: ['', [Validators.required]],
@@ -42,13 +44,12 @@ export class RegisterComponent implements OnInit {
   }
 
   selecAvatar(event) {
-    debugger;
+
     this.selectedFiles = event.target.files;
     console.log(this.selectedFiles);
   }
 
   upload() {
-    debugger;
     const file = this.selectedFiles.item(0);
     this.selectedFiles = undefined;
 
@@ -72,10 +73,13 @@ export class RegisterComponent implements OnInit {
       .subscribe(
         data => {
           console.log(data);
+          this.isRegister = true;
+          this.isRegisterFail = false;
         },
         error => {
           console.log(error);
           this.errorMessage = error.error.message;
+          this.isRegisterFail = true;
         });
   }
 }
