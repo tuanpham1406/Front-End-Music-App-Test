@@ -17,7 +17,7 @@ export class ContentComponent implements OnInit {
     this.songService
       .getSong()
       .subscribe(
-        songfile => {this.songInfor = songfile; },
+        next => {this.songInfor = next; },
         error => {this.songInfor = []; }
       );
   }

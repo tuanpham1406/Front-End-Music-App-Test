@@ -1,4 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {SongService} from '../../../B.SERVICE/2.SongManager/song.service';
+import {SongInfor} from '../../../A.MODEL/1.Request/SongManager/Song-Infor';
+import {ActivatedRoute} from '@angular/router';
 
 declare function playDock(): any;
 
@@ -8,11 +11,19 @@ declare function playDock(): any;
   styleUrls: ['./detail-song.component.scss']
 })
 export class DetailSongComponent implements OnInit {
-
-  constructor() {
-  }
+  song: SongInfor;
+  constructor(
+    private songService: SongService,
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
-    playDock();
+    debugger;
+    const  id = +this.route.snapshot.paramMap.get('id');
+    this.songService
+      .getSongById(id)
+      .subscribe(
+        next => {this.song = next; },
+        error => {this.song = null; }
+      );
   }
 }

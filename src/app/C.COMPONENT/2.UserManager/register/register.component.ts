@@ -59,6 +59,7 @@ export class RegisterComponent implements OnInit {
   }
 
   RegisterAccount() {
+    debugger;
     this.registerForm = new RegisterInfo(
       this.form.firstName,
       this.form.lastName,

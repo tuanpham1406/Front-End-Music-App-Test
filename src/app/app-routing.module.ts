@@ -23,7 +23,7 @@ const routes: Routes = [
   {path: 'auth/dashboard', component: DashboardComponent},
   {path: 'song/my-playlist', component: ListSongComponent},
   {path: 'auth/personal', component: PersonalComponent},
-  {path: 'song/play', component: DetailSongComponent},
+  {path: 'song/play/:id', component: DetailSongComponent},
   {path: 'singer/song', component: SingerComponent},
   {path: '', redirectTo: 'home', pathMatch: 'full'}
 ];
