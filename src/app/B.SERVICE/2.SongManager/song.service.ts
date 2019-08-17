@@ -45,8 +45,11 @@ export class SongService {
     );
   } // Push file
 
-  private saveFileData(fileUpload: FileUpload) {
-    this.db.list(`${this.basePathFile}/`).push(fileUpload);
+  public saveFileData(fileUpload: FileUpload) {
+    this.db
+      .list(`${this.basePathFile}/`)
+      .push(fileUpload)
+      .then(  result => {console.log('saveFileData', result); });
   } // Save file
 
 

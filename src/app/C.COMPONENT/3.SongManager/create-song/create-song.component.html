@@ -1,36 +1,77 @@
-<div class="card">
-  <div class="card-body">
-    <form [formGroup]="songForm" (ngSubmit)="createSong()"  class="col-md-6">
-    <div class="form-group">
-      <label>Name Song</label>
-      <input type="text" class="form-control" formControlName="nameSong" placeholder="Enter name song">
-      <small id="songhelp" class="form-text text-muted">You are not allowed to leave the song name blank.</small>
+<div class="container">
+  <div class="create-song offset-4">
+    <div class="card" style="width: 28rem">
+      <div class="card-body">
+        <div class="panel panel-info">
+
+          <div class="panel-heading">
+            <div class="panel-title"><h2>Create Song</h2></div>
+          </div> <!--Header-->
+
+          <div class="panel-body" style="padding-top:30px">
+            <div style="display:none" id="createsong-alert" class="alert alert-danger col-sm-12"></div>
+            <form class="form-inline" name="form" (ngSubmit)="f.form.valid" #f="ngForm" novalidate>
+              <div *ngIf="isCreateSong; else createSongForm">
+                <p class="message-signup">Your created New Song OK.</p>
+              </div>
+
+              <ng-template #createSongForm>
+                <div class="row col-sm-6 d-flex register" style="max-width:500px;">
+                  <form name="form" (ngSubmit)="f.form.valid && createSong()" #f="ngForm" novalidate>
+
+                    <div style="margin-bottom: 25px" class="form-group">
+                      <input type="text" class="form-control"
+                             name="nameSong" placeholder="Name Song"
+                             [(ngModel)]="form.nameSong"
+                             #firstName="ngModel" required/>
+                    </div>
+
+                    <div style="margin-bottom: 25px" class="form-group">
+                      <input type="text" class="form-control"
+                             name="singer" placeholder="Singer"
+                             [(ngModel)]="form.singer"
+                             #singer="ngModel" required/>
+                    </div>
+
+                    <div style="margin-bottom: 25px" class="form-group">
+                      <input type="text" class="form-control"
+                             name="category" placeholder="Category"
+                             [(ngModel)]="form.category"
+                             #category="ngModel" required/>
+                    </div>
+
+                    <div style="margin-bottom: 25px" class="form-group">
+                      <input type="text" class="form-control"
+                             name="category" placeholder="lyrics"
+                             [(ngModel)]="form.lyrics"
+                             #lyrics="ngModel" required/>
+                    </div>
+
+                    <div style="margin-bottom: 25px" class="form-group">
+                      <input type="file" (change)="selectAvatar($event)" placeholder="Choose Avatar">
+                      <button type="button" class="btn btn-success" (click)="uploadAvatar()">Save Avatar</button>
+                    </div> <!--Choose Avatar-->
+
+
+                    <div style="margin-bottom: 25px" class="form-group">
+                      <input type="file" (change)="selectFile($event)" placeholder="Choose Avatar">
+                      <button type="button" class="btn btn-success" (click)="uploadMp3()">Save File</button>
+                    </div> <!--Choose Avatar-->
+
+                    <div class="form-group">
+                      <button class="btn btn-primary offset-6" style="margin-top: 10px">Create Song</button>
+                    </div>
+                  </form>
+                </div>
+              </ng-template>
+
+            </form>
+          </div> <!--Body-->
+        </div>
+      </div>
     </div>
-    <div class="form-group">
-      <label>Singer</label>
-      <input type="text" class="form-control" formControlName="singer" placeholder="Enter singer">
-    </div>
-    <div class="form-group">
-      <label>Category</label>
-      <input type="text" class="form-control" formControlName="category" placeholder="Enter category">
-    </div>
-    <div class="form-group">
-      <label>Lyrics</label>
-      <textarea class="form-control" formControlName="lyrics" rows="3"></textarea>
-    </div>
-    <h6>Song avatar</h6>
-    <div class="custom-file">
-      <input type="file" class="custom-file-input" (change)="selectAvatar($event)">
-      <label class="custom-file-label">Choose song image ...</label>
-    </div>
-    <br>
-    <h6>Song mp3</h6>
-    <div class="custom-file">
-      <input type="file" class="custom-file-input" (change)="selectFile($event)">
-      <label class="custom-file-label">Choose file mp3 ...</label>
-    </div>
-    <hr>
-    <button type="submit" class="btn btn-primary">Create</button>
-    </form>
   </div>
 </div>
+
+
+

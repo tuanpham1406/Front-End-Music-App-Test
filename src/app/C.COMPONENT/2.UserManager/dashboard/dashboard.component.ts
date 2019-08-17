@@ -7,7 +7,7 @@ import {UserService} from '../../../B.SERVICE/1.UserManager/user/user.service';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  board: string;
+  board: any = [];
   errorMessage: string;
   constructor(private userService: UserService) { }
 

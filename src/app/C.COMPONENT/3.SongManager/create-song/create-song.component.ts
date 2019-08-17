@@ -15,117 +15,81 @@ import {map} from 'rxjs/operators';
   styleUrls: ['./create-song.component.scss']
 })
 export class CreateSongComponent implements OnInit {
-  // =============OLD ======================
-  selectedFiles: FileList;
-  currentFileUpload: FileUpload;
+  selectedMp3Files: FileList;
+  selectedAvatarFile: FileList;
+  currentAvatarFileUpload: FileUpload;
+  currentMp3FileUpload: FileUpload;
   form: any = {};
   // =========================================
   songInfor: SongInfor[] = [];
   createSongInfo: SongInfor;
-  songForm: FormGroup;
 
-  fileMp3All: any[] = [];
-  fileAvatarAll: any[] = [];
-
-  fileMp3Url: string;
-  fileAvatarUrl: string;
-
+  isCreateSong = false;
+  isCreateSongFail = false;
 
   constructor(
     private songService: SongService,
     private http: HttpClient,
-    private router: Router,
-    private route: ActivatedRoute,
-    private fb: FormBuilder) {
+    private router: Router) {
   }
 
   ngOnInit() {
-    this.songForm = this.fb.group({
-      nameSong: ['', Validators.required],
-      singer: ['', Validators.required],
-      category: ['', Validators.required],
-      lyrics: ['', Validators.required],
-    });
     this.songService
       .getSong()
       .subscribe(
         data => (this.songInfor = data),
-        error => (this.songInfor = [])
-      );
-
-    this.songService
-      .getAvatarUploads(100)
-      .snapshotChanges()
-      .pipe(map(changes =>
-        changes.map(c => ({key: c.payload.key, ...c.payload.val()}))))
-      .subscribe(
-        fileUploads => {
-          this.fileAvatarAll = fileUploads;
-        });
-
-    this.songService
-      .getFileUploads(100)
-      .snapshotChanges()
-      .pipe(map(changes =>
-        changes.map(c => ({key: c.payload.key, ...c.payload.val()}))))
-      .subscribe(
-        fileUploads => {
-          this.fileMp3All = fileUploads;
-        });
-
+        error => (this.songInfor = []));
   }
 
   // FIREBASE SERVER
   selectAvatar(event) {
-    this.selectedFiles = event.target.files;
-    this.uploadAvatar();
+    this.selectedAvatarFile = event.target.files;
   }
-  uploadAvatar() {
-    const file = this.selectedFiles.item(0);
-    this.selectedFiles = undefined;
 
-    this.currentFileUpload = new FileUpload(file);
-    this.songService.pushAvatarToStorage(this.currentFileUpload);
+  uploadAvatar() {
+    const avatarFile = this.selectedAvatarFile.item(0);
+    this.selectedAvatarFile = undefined;
+
+    this.currentAvatarFileUpload = new FileUpload(avatarFile);
+    this.songService.pushAvatarToStorage(this.currentAvatarFileUpload);
   }
 
   selectFile(event) {
-    this.selectedFiles = event.target.files;
-    this.upload();
+    this.selectedMp3Files = event.target.files;
   }
-  upload() {
-    const file = this.selectedFiles.item(0);
-    this.selectedFiles = undefined;
 
-    this.currentFileUpload = new FileUpload(file);
-    this.songService.pushFileToStorage(this.currentFileUpload);
+  uploadMp3() {
+    const mp3File = this.selectedMp3Files.item(0);
+    this.selectedMp3Files = undefined;
+
+    this.currentMp3FileUpload = new FileUpload(mp3File);
+    this.songService.pushFileToStorage(this.currentMp3FileUpload);
   }
 
   // BACK-END SERVER
   createSong() {
-    this.fileMp3Url = this.fileMp3All[this.fileMp3All.length - 1].url;
-    this.fileAvatarUrl = this.fileAvatarAll[this.fileAvatarAll.length - 1].url;
-    if (this.songForm.valid) {
-      const {value} = this.songForm;
-      this.createSongInfo = new SongInfor(
-        value.nameSong,
-        value.singer,
-        value.category,
-        value.lyrics,
-        this.fileAvatarUrl,
-        this.fileMp3Url
+    debugger;
+    this.createSongInfo = new SongInfor(
+      this.form.nameSong,
+      this.form.singer,
+      this.form.category,
+      this.form.lyrics,
+      this.currentAvatarFileUpload.url,
+      this.currentMp3FileUpload.url
+    );
+    this.songService
+      .createSong(this.createSongInfo)
+      .subscribe(
+        data => {
+          console.log(data);
+          this.isCreateSong = true;
+          this.isCreateSongFail = false;
+          this.router.navigate(['/home']);
+        },
+        error => {
+          console.log(error);
+          this.isCreateSongFail = true;
+        }
       );
-      this.songService
-        .createSong(this.createSongInfo)
-        .subscribe(
-          data => {
-            this.songInfor.unshift(data);
-            this.router.navigate(['/home']);
-          },
-          error => {
-            console.log(error);
-            this.songInfor = null;
-          }
-        );
-    }
   }
 }
