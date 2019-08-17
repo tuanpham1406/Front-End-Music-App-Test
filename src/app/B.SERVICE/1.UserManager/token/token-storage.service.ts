@@ -1,7 +1,11 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 
 const TOKEN_KEY = 'AuthToken';
 const USERNAME_KEY = 'AuthUsername';
+const FIRSTNAME_KEY = 'AuthUsername';
+const LASTNAME_KEY = 'AuthUsername';
+const EMAIL_KEY = 'AuthUsername';
+const AVATAR_KEY = 'AuthUsername';
 const AUTHORITIES_KEY = 'AuthAuthorities';
 
 @Injectable({
@@ -9,9 +13,13 @@ const AUTHORITIES_KEY = 'AuthAuthorities';
 })
 export class TokenStorageService {
   private roles: Array<string> = [];
-  constructor() { }
 
-  Logout() {window.sessionStorage.clear(); }
+  constructor() {
+  }
+
+  Logout() {
+    window.sessionStorage.clear();
+  }
 
   public saveToken(token: string) {
     window.sessionStorage.removeItem(TOKEN_KEY);
@@ -34,6 +42,15 @@ export class TokenStorageService {
   public saveAuthorities(authorities: string[]) {
     window.sessionStorage.removeItem(AUTHORITIES_KEY);
     window.sessionStorage.setItem(AUTHORITIES_KEY, JSON.stringify(authorities));
+  }
+
+  public saveAvatar(avatar: string) {
+    window.sessionStorage.removeItem(AVATAR_KEY);
+    window.sessionStorage.setItem(AVATAR_KEY, avatar);
+  }
+
+  public getAvatar() {
+    return sessionStorage.getItem(AVATAR_KEY);
   }
 
   public getAuthorities(): string[] {

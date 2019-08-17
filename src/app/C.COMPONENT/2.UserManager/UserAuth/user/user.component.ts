@@ -29,6 +29,7 @@ export class UserComponent implements OnInit {
     this.info = {
       token: this.token.getToken(),
       username: this.token.getUsername(),
+      avatar: this.token.getAvatar(),
       authorities: this.token.getAuthorities()
     };
   }
