@@ -1,7 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {FileUpload} from '../../../A.MODEL/1.Request/SongManager/FileUpload';
-import {SongService} from '../../../B.SERVICE/2.SongManager/song.service';
+import {Component, OnInit} from '@angular/core';
 
+declare function playDock(): any;
 
 @Component({
   selector: 'app-detail-song',
@@ -10,13 +9,10 @@ import {SongService} from '../../../B.SERVICE/2.SongManager/song.service';
 })
 export class DetailSongComponent implements OnInit {
 
-  @Input() fileUpload: FileUpload;
-
-  constructor(private songService: SongService) { }
-
-  ngOnInit() {
+  constructor() {
   }
 
-  deleteFileUpload(fileUpload) {
+  ngOnInit() {
+    playDock();
   }
 }
