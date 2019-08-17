@@ -44,34 +44,27 @@ export class SongService {
       }
     );
   } // Push file
-
   public saveFileData(fileUpload: FileUpload) {
     this.db
       .list(`${this.basePathFile}/`)
       .push(fileUpload)
       .then(  result => {console.log('saveFileData', result); });
   } // Save file
-
-
   public getFileUploads(numberItems): AngularFireList<FileUpload> {
     return this.db.list(this.basePathFile, ref => ref.limitToLast(numberItems));
   }  // Get file
-
   private deleteFileUpload(fileUpload: FileUpload) {
     this.deleteFileDatabase(fileUpload.key)
       .then(() => {this.deleteFileStorage(fileUpload.name); })
       .catch(error => console.log(error));
   } // Delete file
-
   private deleteFileDatabase(key: string) {
     return this.db.list(`${this.basePathFile}/`).remove(key);
   } // Delete file from Database
-
   private deleteFileStorage(name: string) {
     const storageRef = firebase.storage().ref();
     storageRef.child(`${this.basePathFile}/${name}`).delete();
   } // Delete file from Storage
-
   pushAvatarToStorage(fileUpload: FileUpload) {
     const storageReference = firebase.storage().ref();
     const uploadTaskAvatar = storageReference.child(`${this.basePathAvatar}/${fileUpload.file.name}`).put(fileUpload.file);
@@ -89,16 +82,13 @@ export class SongService {
       }
     );
   }
-
   private saveAvatarData(fileUpload: FileUpload) {
     this.db.list(`${this.basePathAvatar}/`).push(fileUpload);
   }
-
   getAvatarUploads(numberItems): AngularFireList<FileUpload> {
     return this.db.list(this.basePathAvatar, ref =>
       ref.limitToLast(numberItems));
   }
-
   deleteAvatarUpload(fileUpload: FileUpload) {
     this.deleteAvatarDatabase(fileUpload.key)
       .then(() => {
@@ -106,11 +96,9 @@ export class SongService {
       })
       .catch(error => console.log(error));
   }
-
   private deleteAvatarDatabase(key: string) {
     return this.db.list(`${this.basePathAvatar}/`).remove(key);
   }
-
   private deleteAvatarStorage(name: string) {
     const storageRef = firebase.storage().ref();
     storageRef.child(`${this.basePathAvatar}/${name}`).delete();

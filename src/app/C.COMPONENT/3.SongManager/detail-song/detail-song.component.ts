@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {FileUpload} from '../../../A.MODEL/1.Request/SongManager/FileUpload';
 import {SongService} from '../../../B.SERVICE/2.SongManager/song.service';
+import {SongInfor} from '../../../A.MODEL/1.Request/SongManager/Song-Infor';
+import {ActivatedRoute} from '@angular/router';
 
 
 @Component({
@@ -9,14 +10,19 @@ import {SongService} from '../../../B.SERVICE/2.SongManager/song.service';
   styleUrls: ['./detail-song.component.scss']
 })
 export class DetailSongComponent implements OnInit {
-
-  @Input() fileUpload: FileUpload;
-
-  constructor(private songService: SongService) { }
+  song: SongInfor;
+  constructor(
+    private songService: SongService,
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
-  }
-
-  deleteFileUpload(fileUpload) {
+    debugger;
+    const  id = +this.route.snapshot.paramMap.get('id');
+    this.songService
+      .getSongById(id)
+      .subscribe(
+        next => {this.song = next; },
+        error => {this.song = null; }
+      );
   }
 }

@@ -7,15 +7,16 @@
         <div class="col-sm-2">
           <div class="ih-item circle effect2 left_to_right">
             <a routerLink="#">
-              <div class="img"><img src="assets/img/song-avatar/motbuocyeuvandamdau.jpg" alt="img"></div>
+              <div class="img"><img src="{{song.avatarUrl}}" alt="{{song.nameSong}}"></div>
               <div class="info"><h3>Play Music</h3>
-                <p>please enjoy our songs</p></div>
+                <p>Enjoy song</p></div>
             </a>
           </div>
         </div>
         <div class="col-md-6">
-          <h3 class="color-letter">Một bước yêu vạn dặm đau</h3>
-          <p class="color-letter">Ca sĩ: <a class="not-underlined">Mr Siro</a></p>
+          <h3 class="color-letter">{{song.nameSong}}</h3>
+          <p class="color-letter">Ca sĩ: <a class="not-underlined">{{song.singer}}</a></p>
+          <p class="color-letter">Thể loại: <a class="not-underlined">{{song.category}}</a></p>
         </div>
         <div class="col-xl-8"></div>
         <div class="col-xl-2" style="color: white">
