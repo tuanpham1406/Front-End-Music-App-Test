@@ -17,7 +17,6 @@ export class DetailSongComponent implements OnInit {
     private route: ActivatedRoute) { }
 
   ngOnInit() {
-    debugger;
     const  id = +this.route.snapshot.paramMap.get('id');
     this.songService
       .getSongById(id)
@@ -25,5 +24,6 @@ export class DetailSongComponent implements OnInit {
         next => {this.song = next; },
         error => {this.song = null; }
       );
+    playDock();
   }
 }
