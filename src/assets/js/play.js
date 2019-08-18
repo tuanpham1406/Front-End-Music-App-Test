@@ -1,8 +1,7 @@
 function playDock() {
   var audio = document.getElementById('audio');
   $("#plays_btn").click(function () {
-
-    if (audio.paused == false) {
+    if (audio.paused === false) {
       audio.pause();
       $("#play_btn").show();
       $("#pause_btn").hide();
@@ -32,7 +31,7 @@ function playDock() {
     s = s < 10 ? "0" + s : s;
     m = m < 10 ? "0" + m : m;
 
-    $('#timeleft').text("-" + m + ":" + s);
+    $('#timeleft').text(m + ":" + s);
 
   });
 }
