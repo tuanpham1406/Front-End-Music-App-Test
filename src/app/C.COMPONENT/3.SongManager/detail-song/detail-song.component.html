@@ -6,15 +6,15 @@
         <div class="col-sm-2">
           <div class="ih-item circle effect2 left_to_right">
             <a id="plays_btn">
-              <div class="img"><img src="assets/img/song-avatar/motbuocyeuvandamdau.jpg" alt="img"></div>
+              <div class="img"><img src="{{song.avatarUrl}}" alt=""></div>
               <div class="info"><h3>Play Music</h3>
                 <p>please enjoy our songs</p></div>
             </a>
           </div>
         </div>
         <div class="col-md-6">
-          <h3 class="color-letter">Một bước yêu vạn dặm đau</h3>
-          <p class="color-letter">Ca sĩ: <a class="not-underlined">Mr Siro</a></p>
+          <h3 class="color-letter">{{song.nameSong}}</h3>
+          <p class="color-letter">Ca sĩ: <a class="not-underlined">{{song.singer}}</a></p>
         </div>
         <div class="col-xl-8"></div>
         <div class="col-xl-2" style="color: white"><i class="fas fa-play"> 1,000,000</i></div>
@@ -61,14 +61,10 @@
             <rect x="1.5" y="17" width="20" height="3"/>
           </svg>
         </div>
-        <audio id="audio">
-          <source
-            src="https://aredir.nixcdn.com/NhacCuaTui980/AnhThuongEmNhatMa-LaLOGTIB-5940921.mp3?st=T1B6888KJBn1A6V3zceB-Q&e=1566100549&t=1566014151036">
-        </audio>
       </div>
     </div>
     <div class="controls_player">
-      <p id="timeleft" style="font-size: 60%">00:00 </p>
+      <p id="timeleft" style="font-size: 60%">00:00</p>
       <div class="progressbar_slide">
         <div class="progressbar_range"></div>
       </div>
@@ -92,7 +88,7 @@
   <hr>
   <div class="row" style="padding:10px 35px">
     <div class="col-md-1">
-      <img src="assets/img/song-avatar/motbuocyeuvandamdau.jpg" alt="Avatar" class="avatar">
+      <img src="{{song.avatarUrl}}" alt="{{song.avatarUrl}}" class="avatar">
     </div>
     <div class="col-md-2">
       <p>Upload By:</p>
@@ -106,67 +102,7 @@
   <div class="card-footer row col-md-8" style="padding:10px 35px">
     <div class="col-md-12"><h2>Lyrics: </h2></div>
     <div class="col-md-12">
-      <pre>
-      Anh Thương Em Nhất Mà - Lã, LOG, TIB
-
-      Ngược dòng thời gian quay về quá khứ
-      Anh tìm lại những kí ức hôm nào
-      Lục tìm trong trí nhớ ngày đầu thu
-      Anh mỉm cười nhớ bóng dáng của em
-
-      Ngày em đến bên anh là món quà
-      Anh thầm ước nguyện từ bấy lâu
-      Ngày em đến bên anh là ánh dương
-      Mang tình yêu ngập tràn nơi anh
-
-      Anh thương em nhất mà
-      Cớ sao bây giờ lại vội chia xa
-      Anh yêu em nhất mà
-      Cớ sao bây giờ lại vội buông tay
-
-      Từng day dứt ngày ấy vẫn luôn vẹn nguyên tình mình tựa mây bay
-      Lời theo gió nhẹ trôi tiếng yêu đầu môi lụi tàn nào ai hay
-      Có người hỏi sao anh lại viết nhạc
-      Vì khó quên em nên không thể làm việc khác
-
-      Cớ sao anh luôn bên phím đàn
-      Vì nỗi nhớ em luôn tích tịch tình tang
-      Chuyện tình đẹp hay chuyện tình dở dang
-      Tình mình có thơ hay chỉ là lỡ làng
-
-      Tình mình giống như nàng Kiều và Kim Trọng
-      Bắt đầu thật đẹp để rồi toàn thở than
-      Anh đã có cho mình những sai lầm
-      Chất thành đống nên giờ thật khó sửa
-
-      Từ khi xa em nỗi nhớ tới làm bạn
-      Còn đêm nay nỗi buồn đến gõ cửa.
-      Anh tua ngược bộ phim của kí ức
-      Để một lần nữa sống trong kỉ niệm xưa
-
-      Tìm một ngày được bên nhau lần nữa
-      Sao khó như tìm hạt nắng trong vệt mưa.
-      Khu vườn tình yêu không chăm sóc
-      Chỉ còn cành khô và vài nắm cỏ dại
-
-      Làm sao để lau mi em khóc
-      Làm sao để tình mình thắm trở lại?
-      Anh không muốn cuộc sống mình vô vị
-      Như Tô Thị hóa đá chờ nghìn năm
-
-      Anh chỉ muốn làm cao áp đô thị
-      Nơi em tối thì anh tới hỏi thăm.
-      Xa em rồi anh sẽ nhớ
-      Nhớ lần đầu đôi mình khẽ chạm môi
-
-      Nhớ cả cái nắm tay chiều hôm ấy
-      Nhớ cả những cái ôm mới đây thôi.
-      Anh vẫn có cho mình những câu hỏi
-
-      Về chuyện tình của hai ta
-      Rằng anh thương em nhất mà
-      Cớ sao bây giờ mình phải vội chia xa?
-        </pre>
+      <pre>{{song.lyrics}}</pre>
     </div>
   </div>
   <hr>
