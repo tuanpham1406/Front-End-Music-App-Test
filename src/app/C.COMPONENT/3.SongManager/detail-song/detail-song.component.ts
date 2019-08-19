@@ -5,6 +5,8 @@ import {ActivatedRoute} from '@angular/router';
 
 declare function playDock(): any;
 
+declare function commentFb(): any;
+
 @Component({
   selector: 'app-detail-song',
   templateUrl: './detail-song.component.html',
@@ -12,18 +14,25 @@ declare function playDock(): any;
 })
 export class DetailSongComponent implements OnInit {
   song: SongInfor;
+
   constructor(
     private songService: SongService,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute) {
+  }
 
   ngOnInit() {
-    const  id = +this.route.snapshot.paramMap.get('id');
+    const id = +this.route.snapshot.paramMap.get('id');
     this.songService
       .getSongById(id)
       .subscribe(
-        next => {this.song = next; },
-        error => {this.song = null; }
+        next => {
+          this.song = next;
+        },
+        error => {
+          this.song = null;
+        }
       );
     playDock();
+    commentFb();
   }
 }

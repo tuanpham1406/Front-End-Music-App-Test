@@ -31,7 +31,8 @@
               "src/styles.scss"
             ],
             "scripts": [
-              "src/assets/js/play.js"
+              "src/assets/js/play.js",
+              "src/assets/js/commentfb.js"
             ]
           },
           "configurations": {
