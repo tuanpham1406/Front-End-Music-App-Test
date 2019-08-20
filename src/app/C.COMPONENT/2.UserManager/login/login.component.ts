@@ -31,16 +31,20 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
+    debugger;
     console.log(this.form);
     this.loginInfo = new LoginInfo(
       this.form.username,
       this.form.password);
 
-    this.authService.loginAuth(this.loginInfo).subscribe(
+    this.authService
+      .loginAuth(this.loginInfo)
+      .subscribe(
       data => {
         console.log(data);
         this.tokenStorage.saveToken(data.accessToken);
         this.tokenStorage.saveUsername(data.username);
+        this.tokenStorage.saveAvatar(data.avatarUrl);
         this.tokenStorage.saveAuthorities(data.authorities);
 
         this.isLoginFailed = false;

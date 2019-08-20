@@ -12,8 +12,8 @@ import {FormGroup} from '@angular/forms';
   providedIn: 'root'
 })
 export class SongService {
-  private basePathAvatar = 'dangduc/avatar';
-  private basePathFile = 'dangduc/fileMp3';
+  private basePathAvatar = 'dangduc_project/songManager/avatar';
+  private basePathFile = 'dangduc_project/songManager/fileMp3';
 
   private songUrl = 'http://localhost:8080/api/songs';
 

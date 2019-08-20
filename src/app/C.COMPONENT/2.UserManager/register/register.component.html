@@ -1,14 +1,15 @@
 <div class="container">
   <div class="login offset-4">
-    <div id="loginbox" style="margin-top:50px; border: 1px solid #0c3a8b;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-      <div class="panel panel-info" >
+    <div id="loginbox" style="margin-top:50px; border: 1px solid #0c3a8b;"
+         class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+      <div class="panel panel-info">
         <div class="panel-heading">
           <div class="panel-title offset-4"><h2>Register</h2></div>
           <div style="float:right; font-size: 80%; position: relative; top:-10px">
-            <a href="#">You haved accout. Login Now</a></div>
+            <a [routerLink]="['auth/login']">You haved accout. Login Now</a></div>
         </div> <!--Header-->
 
-        <div class="panel-body" style="padding-top:30px" >
+        <div class="panel-body" style="padding-top:30px">
           <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
           <form class="form-inline" name="form" (ngSubmit)="f.form.valid" #f="ngForm" novalidate>
             <div *ngIf="isRegister; else signupForm">
@@ -76,9 +77,9 @@
                   </div> <!--Choose Avatar-->
 
 
-
                   <div class="form-group">
-                    <button class="btn btn-primary offset-6" style="margin-top: 10px">Register</button>
+                    <button class="btn btn-primary offset-6" style="margin-top: 10px">Register
+                    </button>
                   </div>
                 </form>
               </div>

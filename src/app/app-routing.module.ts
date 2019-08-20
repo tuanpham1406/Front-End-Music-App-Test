@@ -10,7 +10,7 @@ import {ContentComponent} from './C.COMPONENT/1.Layout/content/content.component
 import {PersonalComponent} from './C.COMPONENT/3.SongManager/personal/personal.component';
 import {ListSongComponent} from './C.COMPONENT/3.SongManager/list-song/list-song.component';
 import {DetailSongComponent} from './C.COMPONENT/3.SongManager/detail-song/detail-song.component';
-import {SingerComponent} from './singer/singer.component';
+import {SingerComponent} from './C.COMPONENT/5.SingerManager/singer/singer.component';
 
 
 const routes: Routes = [

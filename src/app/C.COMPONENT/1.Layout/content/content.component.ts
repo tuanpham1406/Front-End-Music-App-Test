@@ -9,6 +9,7 @@ import {SongInfor} from '../../../A.MODEL/1.Request/SongManager/Song-Infor';
 })
 export class ContentComponent implements OnInit {
   songInfor: SongInfor[] = [];
+
   constructor(
     private songService: SongService) {
   }
@@ -17,9 +18,17 @@ export class ContentComponent implements OnInit {
     this.songService
       .getSong()
       .subscribe(
-        next => {this.songInfor = next; },
-        error => {this.songInfor = []; }
+        next => {
+          this.songInfor = next;
+        },
+        error => {
+          this.songInfor = [];
+        }
       );
+  }
+
+  reloadFb() {
+    window.location.reload();
   }
 
 }

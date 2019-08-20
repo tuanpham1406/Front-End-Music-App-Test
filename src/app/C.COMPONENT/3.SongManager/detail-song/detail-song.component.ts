@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {SongService} from '../../../B.SERVICE/2.SongManager/song.service';
 import {SongInfor} from '../../../A.MODEL/1.Request/SongManager/Song-Infor';
 import {ActivatedRoute} from '@angular/router';
+import {PlaylistInfor} from '../../../A.MODEL/1.Request/PlaylistManager/Playlist-Infor';
 
 declare function playDock(): any;
 
@@ -12,11 +13,18 @@ declare function playDock(): any;
 })
 export class DetailSongComponent implements OnInit {
   song: SongInfor;
+  songInfor: SongInfor[] = [];
   constructor(
     private songService: SongService,
     private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.songService
+      .getSong()
+      .subscribe(
+        data => { this.songInfor = data; },
+        error => {this.songInfor = []; }
+      );
     const  id = +this.route.snapshot.paramMap.get('id');
     this.songService
       .getSongById(id)
@@ -26,4 +34,7 @@ export class DetailSongComponent implements OnInit {
       );
     playDock();
   }
+  // likeCount() {
+  //   this.song.like = this.song.like +1;
+  // }
 }

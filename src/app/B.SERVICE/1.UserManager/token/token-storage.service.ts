@@ -2,10 +2,10 @@ import {Injectable} from '@angular/core';
 
 const TOKEN_KEY = 'AuthToken';
 const USERNAME_KEY = 'AuthUsername';
-const FIRSTNAME_KEY = 'AuthUsername';
-const LASTNAME_KEY = 'AuthUsername';
-const EMAIL_KEY = 'AuthUsername';
-const AVATAR_KEY = 'AuthUsername';
+const FIRSTNAME_KEY = 'AuthFirstname';
+const LASTNAME_KEY = 'AuthLastname';
+const EMAIL_KEY = 'AuthEmailname';
+const AVATAR_KEY = 'AuthAvatarname';
 const AUTHORITIES_KEY = 'AuthAuthorities';
 
 @Injectable({

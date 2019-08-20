@@ -7,6 +7,9 @@ import {RegisterInfo} from '../../../A.MODEL/1.Request/UserManager/Register-Info
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {map} from 'rxjs/operators';
+import {CategoryService} from '../../../B.SERVICE/5.Category/category.service';
+import {CategoryInfor} from '../../../A.MODEL/1.Request/CategoryManager/Category-Infor';
+import {TokenStorageService} from '../../../B.SERVICE/1.UserManager/token/token-storage.service';
 
 
 @Component({
@@ -20,8 +23,11 @@ export class CreateSongComponent implements OnInit {
   currentAvatarFileUpload: FileUpload;
   currentMp3FileUpload: FileUpload;
   form: any = {};
+  like: number;
+  listen: number;
   // =========================================
   songInfor: SongInfor[] = [];
+  categoryInfor: CategoryInfor[] = [];
   createSongInfo: SongInfor;
 
   isCreateSong = false;
@@ -30,15 +36,27 @@ export class CreateSongComponent implements OnInit {
   constructor(
     private songService: SongService,
     private http: HttpClient,
-    private router: Router) {
+    private router: Router,
+    private categoryService: CategoryService,
+    private token: TokenStorageService) {
   }
 
   ngOnInit() {
+    this.like = 0;
+    this.listen = 0;
     this.songService
       .getSong()
       .subscribe(
         data => (this.songInfor = data),
         error => (this.songInfor = []));
+
+    this.categoryService
+      .getCategory()
+      .subscribe(
+        data => {this.categoryInfor = data; },
+        error => {this.categoryInfor = []; }
+      );
+    this.token.getUsername();
   }
 
   // FIREBASE SERVER
@@ -75,7 +93,9 @@ export class CreateSongComponent implements OnInit {
       this.form.category,
       this.form.lyrics,
       this.currentAvatarFileUpload.url,
-      this.currentMp3FileUpload.url
+      this.currentMp3FileUpload.url,
+      this.like,
+      this.listen
     );
     this.songService
       .createSong(this.createSongInfo)

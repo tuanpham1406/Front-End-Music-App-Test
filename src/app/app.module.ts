@@ -23,7 +23,8 @@ import { ContentComponent } from './C.COMPONENT/1.Layout/content/content.compone
 import { CaroselComponent } from './C.COMPONENT/1.Layout/content/carosel/carosel.component';
 import { PersonalComponent } from './C.COMPONENT/3.SongManager/personal/personal.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import { SingerComponent } from './singer/singer.component';
+import { SingerComponent } from './C.COMPONENT/5.SingerManager/singer/singer.component';
+import { PlaylistComponent } from './C.COMPONENT/4.PlayListManager/playlist/playlist.component';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { SingerComponent } from './singer/singer.component';
     ContentComponent,
     CaroselComponent,
     PersonalComponent,
-    SingerComponent
+    SingerComponent,
+    PlaylistComponent
   ],
   imports: [
     BrowserModule,
