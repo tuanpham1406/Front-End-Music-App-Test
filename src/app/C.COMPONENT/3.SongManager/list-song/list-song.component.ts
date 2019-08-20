@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {SongService} from '../../../B.SERVICE/2.SongManager/song.service';
+import {SongInfor} from '../../../A.MODEL/1.Request/SongManager/Song-Infor';
 
 interface MyPlaylist {
   id?: number;
@@ -30,7 +31,7 @@ export class ListSongComponent implements OnInit {
       .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
   }
 
-  listSong: any[];
+  songList: SongInfor[] = [];
 
   constructor(private songService: SongService) {
   }
@@ -40,11 +41,16 @@ export class ListSongComponent implements OnInit {
       .getSong()
       .subscribe(
         data => {
-          this.listSong = data;
+          this.songList = data;
         },
         error => {
           console.log(error);
         }
       );
+  }
+
+  deleteSong(id: number) {
+    debugger;
+    this.songService.deleteSong(id);
   }
 }
