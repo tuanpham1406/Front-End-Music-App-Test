@@ -25,6 +25,8 @@ import { PersonalComponent } from './C.COMPONENT/3.SongManager/personal/personal
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { SingerComponent } from './C.COMPONENT/5.SingerManager/singer/singer.component';
 import { PlaylistComponent } from './C.COMPONENT/4.PlayListManager/playlist/playlist.component';
+import { CreatePlaylistComponent } from './C.COMPONENT/4.PlayListManager/create-playlist/create-playlist.component';
+import { ListPlaylistComponent } from './C.COMPONENT/4.PlayListManager/list-playlist/list-playlist.component';
 
 
 @NgModule({
@@ -44,7 +46,9 @@ import { PlaylistComponent } from './C.COMPONENT/4.PlayListManager/playlist/play
     CaroselComponent,
     PersonalComponent,
     SingerComponent,
-    PlaylistComponent
+    PlaylistComponent,
+    CreatePlaylistComponent,
+    ListPlaylistComponent
   ],
   imports: [
     BrowserModule,
