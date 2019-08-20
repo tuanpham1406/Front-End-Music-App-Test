@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {SongService} from '../../../B.SERVICE/2.SongManager/song.service';
 import {SongInfor} from '../../../A.MODEL/1.Request/SongManager/Song-Infor';
+import {FileUpload} from '../../../A.MODEL/1.Request/SongManager/FileUpload';
 
 interface MyPlaylist {
   id?: number;
@@ -24,7 +25,7 @@ export class ListSongComponent implements OnInit {
   page = 1;
   pageSize = 4;
   collectionSize = MYPLAYLIST.length;
-
+  delete: SongInfor;
   get myPlaylist(): MyPlaylist[] {
     return MYPLAYLIST
       .map((myPlaylist, i) => ({id: i + 1, ...myPlaylist}))
@@ -32,6 +33,8 @@ export class ListSongComponent implements OnInit {
   }
 
   songList: SongInfor[] = [];
+  song: SongInfor;
+  fileDelete: FileUpload;
 
   constructor(private songService: SongService) {
   }
@@ -51,6 +54,15 @@ export class ListSongComponent implements OnInit {
 
   deleteSong(id: number) {
     debugger;
-    this.songService.deleteSong(id);
+    // Xóa trong Backend
+    this.songService
+      .deleteSong(id)
+      .subscribe(
+        data => {
+          this.delete = data;
+          window.location.reload(); },
+        error => {this.delete = null; }
+      );
+    // Xóa ảnh, MP3 trong Firebase
   }
 }

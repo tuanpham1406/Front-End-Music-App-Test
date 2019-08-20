@@ -17,6 +17,8 @@ declare function commentFb(): any;
 export class DetailSongComponent implements OnInit {
   song: SongInfor;
   songInfor: SongInfor[] = [];
+  likeCounter = 0;
+
   constructor(
     private songService: SongService,
     private route: ActivatedRoute, config: NgbModalConfig, private modalService: NgbModal) {
@@ -29,19 +31,13 @@ export class DetailSongComponent implements OnInit {
       .getSong()
       .subscribe(
         data => { this.songInfor = data; },
-        error => {this.songInfor = []; }
-      );
-    const  id = +this.route.snapshot.paramMap.get('id');
+        error => { this.songInfor = []; });
+    const id = +this.route.snapshot.paramMap.get('id');
     this.songService
       .getSongById(id)
       .subscribe(
-        next => {
-          this.song = next;
-        },
-        error => {
-          this.song = null;
-        }
-      );
+        next => {this.song = next; },
+        error => {this.song = null; });
     playDock();
     commentFb();
   }
@@ -49,7 +45,17 @@ export class DetailSongComponent implements OnInit {
   open(content) {
     this.modalService.open(content);
   }
-  // likeCount() {
-  //   this.song.like = this.song.like +1;
-  // }
+
+  likeCount(id: number) {
+    this.likeCounter++;
+    if (this.likeCounter === 1) {
+      this.songService
+        .getLikeSongById(id)
+        .subscribe(
+          data => {this.song = data; },
+          error => {this.song = null; }
+        );
+    }
+
+  }
 }

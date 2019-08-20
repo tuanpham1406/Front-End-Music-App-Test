@@ -19,7 +19,7 @@
         </div>
         <div class="col-xl-8"></div>
         <div class="col-xl-2" style="color: white"><i class="fas fa-play">{{song.listenSong}}</i></div>
-        <div class="col-xl-2" style="color: white"><i class="fas fa-heart">10000</i></div>
+        <div class="col-xl-2" style="color: white"><i class="fas fa-heart">{{song.likeSong}}</i></div>
       </div>
       <div class="row col-xl-6">
         <audio id="audio">
@@ -93,7 +93,7 @@
       </ng-template>
     </div>
     <div class="col-md-1">
-      <a routerLink="#"><i class="far fa-heart" (click)="likeCount()"> Like</i></a>
+      <a routerLink="#"><i class="far fa-heart" (click)="likeCount(song.id)"> Like</i></a>
     </div>
     <div class="col-md-2">
       <a routerLink="#"><i class="fas fa-cloud-download-alt"> Down load</i></a>

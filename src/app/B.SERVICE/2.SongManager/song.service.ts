@@ -12,16 +12,20 @@ import {FormGroup} from '@angular/forms';
   providedIn: 'root'
 })
 export class SongService {
-  private basePathAvatar = 'dangduc/avatar';
-  private basePathFile = 'dangduc/fileMp3';
+  private basePathAvatar = 'dangduc_project/songManager/avatar';
+  private basePathFile = 'dangduc_project/songManager/fileMp3';
 
-  private songUrl = 'http://localhost:8080/api/songs';
+  private getSongUrl = 'http://localhost:8080/api/songs';
+  private createSongUrl = 'http://localhost:8080/api/songs/create';
+  private getSongByIdUrl = 'http://localhost:8080/api/songs';
+  private updateSongByIdUrl = 'http://localhost:8080/api/songs';
+  private deleteSongByIdUrl = 'http://localhost:8080/api/songs';
+  private likedSongByIdUrl = 'http://localhost:8080/api/songs/like';
+
 
   constructor(
     private db: AngularFireDatabase,
-    private http: HttpClient
-  ) {
-  }
+    private http: HttpClient) {}
 
   // XU LI SERVICE CHO FIREBASE
   public pushFileToStorage(fileUpload: FileUpload, progress: { percentage: number }) {
@@ -61,21 +65,22 @@ export class SongService {
   public getFileUploads(numberItems): AngularFireList<FileUpload> {
     return this.db.list(this.basePathFile, ref => ref.limitToLast(numberItems));
   }  // Get file
-  private deleteFileUpload(fileUpload: FileUpload) {
+  public deleteFileUpload(fileUpload: FileUpload) {
     this.deleteFileDatabase(fileUpload.key)
       .then(() => {
         this.deleteFileStorage(fileUpload.name);
       })
       .catch(error => console.log(error));
   } // Delete file
-  private deleteFileDatabase(key: string) {
+  public deleteFileDatabase(key: string) {
     return this.db.list(`${this.basePathFile}/`).remove(key);
   } // Delete file from Database
-  private deleteFileStorage(name: string) {
+  public deleteFileStorage(name: string) {
     const storageRef = firebase.storage().ref();
     storageRef.child(`${this.basePathFile}/${name}`).delete();
   } // Delete file from Storage
-  pushAvatarToStorage(fileUpload: FileUpload, progress: { percentage: number }) {
+
+  public pushAvatarToStorage(fileUpload: FileUpload, progress: { percentage: number }) {
     const storageReference = firebase.storage().ref();
     const uploadTaskAvatar = storageReference.child(`${this.basePathAvatar}/${fileUpload.file.name}`).put(fileUpload.file);
 
@@ -97,51 +102,49 @@ export class SongService {
       }
     );
   }
-
-  private saveAvatarData(fileUpload: FileUpload) {
+  public saveAvatarData(fileUpload: FileUpload) {
     this.db.list(`${this.basePathAvatar}/`).push(fileUpload);
   }
-
-  getAvatarUploads(numberItems): AngularFireList<FileUpload> {
+  public getAvatarUploads(numberItems): AngularFireList<FileUpload> {
     return this.db.list(this.basePathAvatar, ref =>
       ref.limitToLast(numberItems));
   }
-
-  deleteAvatarUpload(fileUpload: FileUpload) {
+  public deleteAvatarUpload(fileUpload: FileUpload) {
     this.deleteAvatarDatabase(fileUpload.key)
       .then(() => {
         this.deleteAvatarStorage(fileUpload.name);
       })
       .catch(error => console.log(error));
   }
-
-  private deleteAvatarDatabase(key: string) {
+  public deleteAvatarDatabase(key: string) {
     return this.db.list(`${this.basePathAvatar}/`).remove(key);
   }
-
-  private deleteAvatarStorage(name: string) {
+  public deleteAvatarStorage(name: string) {
     const storageRef = firebase.storage().ref();
     storageRef.child(`${this.basePathAvatar}/${name}`).delete();
   }
-
   // XU LI SERVICE CHO BACK-END
   getSong(): Observable<SongInfor[]> {
-    return this.http.get<SongInfor[]>(this.songUrl);
+    return this.http.get<SongInfor[]>(this.getSongUrl);
   }
 
   getSongById(id: number): Observable<SongInfor> {
-    return this.http.get<SongInfor>(`${this.songUrl}/${id}`);
+    return this.http.get<SongInfor>(`${this.getSongByIdUrl}/${id}`);
   }
 
   createSong(song: SongInfor): Observable<SongInfor> {
-    return this.http.post<SongInfor>(this.songUrl, song);
+    return this.http.post<SongInfor>(this.createSongUrl, song);
   }
 
   updateSong(song: SongInfor): Observable<SongInfor> {
-    return this.http.patch<SongInfor>(`${this.songUrl}/${song.id}`, song);
+    return this.http.patch<SongInfor>(`${this.updateSongByIdUrl}/${song.id}`, song);
   }
 
   deleteSong(id: number): Observable<SongInfor> {
-    return this.http.delete<SongInfor>(`${this.songUrl}/${id}`);
+    return this.http.delete<SongInfor>(`${this.deleteSongByIdUrl}/${id}`);
+  }
+
+  getLikeSongById(id: number): Observable<SongInfor> {
+    return this.http.get<SongInfor>(`${this.likedSongByIdUrl}/${id}`);
   }
 }
