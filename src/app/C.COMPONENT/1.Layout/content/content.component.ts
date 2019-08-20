@@ -16,7 +16,6 @@ export class ContentComponent implements OnInit {
   }
 
   ngOnInit() {
-    debugger;
     this.songService
       .getSong()
       .subscribe(

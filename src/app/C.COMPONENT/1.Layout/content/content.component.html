@@ -37,19 +37,19 @@
       </div>
       <br><br>
       <div class="row">
-        <div class="col-lg-3 col-md-12 mb-lg-0 mb-3" *ngFor="let listen of topListen">
+        <div class="col-lg-3 col-md-12 mb-lg-0 mb-3" *ngFor="let top of topListen">
           <div routerLink="/song/play" class="rounded mb-4 play portfolio-effect__item portfolio-item--eff1 "
                style="width: 180px;height: 180px">
             <img class="img-fluid portfolio-item__image"
-                 src="{{listen.avatarUrl}}"
+                 src="{{top.avatarUrl}}"
                  alt="">
             <div class="portfolio-item__info">
               <i class="fas fa-play-circle fa-3x"></i>
             </div>
           </div>
           <h4 routerLink="/song/play" class="font-weight-bold mb-3" style="font-size: 80%"><strong>{{top.nameSong}}</strong></h4>
-          <p>Ca sỹ:  <a class="font-weight-bold">{{listen.singer}}</a></p>
-          <p>Lượt nghe:  - <a class="font-weight-bold">{{listen.listenSong}}</a></p>
+          <p>Ca sỹ:  <a class="font-weight-bold">{{top.singer}}</a></p>
+          <p>Lượt nghe:   <a class="font-weight-bold">{{top.listenSong}}</a></p>
         </div>
       </div>
       <hr>
