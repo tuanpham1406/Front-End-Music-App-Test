@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {SongService} from '../../../B.SERVICE/2.SongManager/song.service';
 import {SongInfor} from '../../../A.MODEL/1.Request/SongManager/Song-Infor';
 import {ActivatedRoute} from '@angular/router';
+import {NgbModal, NgbModalConfig} from '@ng-bootstrap/ng-bootstrap';
 
 declare function playDock(): any;
 
@@ -17,7 +18,9 @@ export class DetailSongComponent implements OnInit {
 
   constructor(
     private songService: SongService,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute, config: NgbModalConfig, private modalService: NgbModal) {
+    config.backdrop = 'static';
+    config.keyboard = false;
   }
 
   ngOnInit() {
@@ -34,5 +37,9 @@ export class DetailSongComponent implements OnInit {
       );
     playDock();
     commentFb();
+  }
+
+  open(content) {
+    this.modalService.open(content);
   }
 }
