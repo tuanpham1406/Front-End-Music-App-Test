@@ -76,7 +76,20 @@
   <div class="col-md-2"></div>
   <div class="row" style="padding:10px 35px">
     <div class="col-md-2">
-      <a routerLink="#"><i class="fas fa-folder-plus"> Add to my playlist</i></a>
+      <a routerLink="#" (click)="open(content)"><i class="fas fa-folder-plus"> Add to playlist</i></a>
+      <ng-template #content let-c="close" let-d="dismiss">
+        <div class="modal-header">
+          <h4 class="modal-title" id="modal-basic-title">Your Playlist!</h4>
+          <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <a routerLink="#">Name Playlist</a>
+        </div>
+        <div class="modal-footer">
+        </div>
+      </ng-template>
     </div>
     <div class="col-md-1">
       <a routerLink="#"><i class="far fa-heart"> Like</i></a>
@@ -114,7 +127,7 @@
       <h2>Comments: </h2>
     </div>
     <hr>
+    <div id="fb-root"></div>
     <div class="fb-comments col-md-8" data-href="https://www.facebook.com/jinneo96" data-width="" data-numposts="5"></div>
   </div>
 </div>
-<div id="fb-root"></div>
