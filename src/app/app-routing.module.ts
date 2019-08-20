@@ -18,7 +18,7 @@ const routes: Routes = [
   {path: 'home', component: ContentComponent},
   {path: 'auth/login', component: LoginComponent},
   {path: 'auth/register', component: RegisterComponent},
-  {path: 'auth/updateinfor', component: UpdateInforComponent},
+  {path: 'auth/updateuser/:username', component: UpdateInforComponent},
   {path: 'auth/changepass', component: ChangePassComponent},
   {path: 'auth/dashboard', component: DashboardComponent},
   {path: 'song/my-playlist', component: ListSongComponent},

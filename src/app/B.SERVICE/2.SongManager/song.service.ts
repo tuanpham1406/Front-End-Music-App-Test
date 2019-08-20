@@ -19,8 +19,10 @@ export class SongService {
   private createSongUrl = 'http://localhost:8080/api/songs/create';
   private getSongByIdUrl = 'http://localhost:8080/api/songs';
   private updateSongByIdUrl = 'http://localhost:8080/api/songs';
-  private deleteSongByIdUrl = 'http://localhost:8080/api/songs';
+  private deleteSongByIdUrl = 'http://localhost:8080/api/songs/by';
   private likedSongByIdUrl = 'http://localhost:8080/api/songs/like';
+  private listenSongUrl = 'http://localhost:8080/api/songs/toplisten';
+  private likeSongUrl = 'http://localhost:8080/api/songs/toplike';
 
 
   constructor(
@@ -146,5 +148,13 @@ export class SongService {
 
   getLikeSongById(id: number): Observable<SongInfor> {
     return this.http.get<SongInfor>(`${this.likedSongByIdUrl}/${id}`);
+  }
+
+  getListenSong(): Observable<SongInfor[]> {
+    return this.http.get<SongInfor[]>(this.listenSongUrl);
+  }
+
+  getLikeSong(): Observable<SongInfor[]> {
+    return this.http.get<SongInfor[]>(this.likeSongUrl);
   }
 }

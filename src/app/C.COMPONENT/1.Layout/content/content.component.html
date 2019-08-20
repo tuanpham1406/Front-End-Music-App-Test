@@ -37,20 +37,19 @@
       </div>
       <br><br>
       <div class="row">
-        <div class="col-lg-3 col-md-12 mb-lg-0 mb-3">
+        <div class="col-lg-3 col-md-12 mb-lg-0 mb-3" *ngFor="let listen of topListen">
           <div routerLink="/song/play" class="rounded mb-4 play portfolio-effect__item portfolio-item--eff1 "
                style="width: 180px;height: 180px">
             <img class="img-fluid portfolio-item__image"
-                 src="https://mdbootstrap.com/img/Photos/Others/images/81.jpg"
+                 src="{{listen.avatarUrl}}"
                  alt="">
             <div class="portfolio-item__info">
               <i class="fas fa-play-circle fa-3x"></i>
             </div>
           </div>
-          <h4 routerLink="/song/play" class="font-weight-bold mb-3" style="font-size: 80%"><strong>Một bước yêu vạn
-            dặm
-            đau</strong></h4>
-          <p>singer - <a class="font-weight-bold">Mr Siro</a></p>
+          <h4 routerLink="/song/play" class="font-weight-bold mb-3" style="font-size: 80%"><strong>{{top.nameSong}}</strong></h4>
+          <p>Ca sỹ:  <a class="font-weight-bold">{{listen.singer}}</a></p>
+          <p>Lượt nghe:  - <a class="font-weight-bold">{{listen.listenSong}}</a></p>
         </div>
       </div>
       <hr>
@@ -60,64 +59,19 @@
       </div>
       <br><br>
       <div class="row">
-        <div class="col-lg-3 col-md-12 mb-lg-0 mb-3">
+        <div class="col-lg-3 col-md-12 mb-lg-0 mb-3" *ngFor="let like of topLike">
           <div routerLink="/song/play" class="rounded mb-4 play portfolio-effect__item portfolio-item--eff1 "
                style="width: 180px;height: 180px">
             <img class="img-fluid portfolio-item__image"
-                 src="https://mdbootstrap.com/img/Photos/Others/images/81.jpg"
+                 src="{{like.avatarUrl}}"
                  alt="">
             <div class="portfolio-item__info">
               <i class="fas fa-play-circle fa-3x"></i>
             </div>
           </div>
-          <h4 routerLink="/song/play" class="font-weight-bold mb-3" style="font-size: 80%"><strong>Một bước yêu vạn dặm
-            đau</strong></h4>
-          <p>singer - <a class="font-weight-bold">Mr Siro</a></p>
-        </div>
-
-        <div class="col-lg-3 col-md-12 mb-lg-0 mb-3">
-          <div routerLink="/song/play" class="rounded mb-4 play portfolio-effect__item portfolio-item--eff1 "
-               style="width: 180px;height: 180px">
-            <img class="img-fluid portfolio-item__image"
-                 src="https://mdbootstrap.com/img/Photos/Others/images/81.jpg"
-                 alt="">
-            <div class="portfolio-item__info">
-              <i class="fas fa-play-circle fa-3x"></i>
-            </div>
-          </div>
-          <h4 routerLink="/song/play" class="font-weight-bold mb-3" style="font-size: 80%"><strong>Một bước yêu vạn dặm
-            đau</strong></h4>
-          <p>singer - <a class="font-weight-bold">Mr Siro</a></p>
-        </div>
-
-        <div class="col-lg-3 col-md-12 mb-lg-0 mb-3">
-          <div routerLink="/song/play" class="rounded mb-4 play portfolio-effect__item portfolio-item--eff1 "
-               style="width: 180px;height: 180px">
-            <img class="img-fluid portfolio-item__image"
-                 src="https://mdbootstrap.com/img/Photos/Others/images/81.jpg"
-                 alt="">
-            <div class="portfolio-item__info">
-              <i class="fas fa-play-circle fa-3x"></i>
-            </div>
-          </div>
-          <h4 routerLink="/song/play" class="font-weight-bold mb-3" style="font-size: 80%"><strong>Một bước yêu vạn dặm
-            đau</strong></h4>
-          <p>singer - <a class="font-weight-bold">Mr Siro</a></p>
-        </div>
-
-        <div class="col-lg-3 col-md-12 mb-lg-0 mb-3">
-          <div routerLink="/song/play" class="rounded mb-4 play portfolio-effect__item portfolio-item--eff1 "
-               style="width: 180px;height: 180px">
-            <img class="img-fluid portfolio-item__image"
-                 src="https://mdbootstrap.com/img/Photos/Others/images/81.jpg"
-                 alt="">
-            <div class="portfolio-item__info">
-              <i class="fas fa-play-circle fa-3x"></i>
-            </div>
-          </div>
-          <h4 routerLink="/song/play" class="font-weight-bold mb-3" style="font-size: 80%"><strong>Một bước yêu vạn dặm
-            đau</strong></h4>
-          <p>singer - <a class="font-weight-bold">Mr Siro</a></p>
+          <h4 routerLink="/song/play" class="font-weight-bold mb-3" style="font-size: 80%"><strong>{{like.nameSong}}</strong></h4>
+          <p>Ca sỹ:  <a class="font-weight-bold">{{like.singer}}</a></p>
+          <p>Lượt thích:  <a class="font-weight-bold">{{like.likeSong}}</a></p>
         </div>
       </div>
       <hr>

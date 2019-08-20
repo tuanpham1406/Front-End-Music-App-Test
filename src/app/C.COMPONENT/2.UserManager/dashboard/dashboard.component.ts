@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {UserService} from '../../../B.SERVICE/1.UserManager/user/user.service';
+import {UserInfo} from 'firebase';
+import {RegisterInfo} from '../../../A.MODEL/1.Request/UserManager/Register-Infor';
+import {UpdateInfo} from '../../../A.MODEL/1.Request/UserManager/Update-Infor';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,16 +10,19 @@ import {UserService} from '../../../B.SERVICE/1.UserManager/user/user.service';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  board: any = [];
+  userInfor: UpdateInfo;
   errorMessage: string;
   constructor(private userService: UserService) { }
 
   ngOnInit() {
+    const name = sessionStorage.getItem('AuthUsername');
     this.userService
-      .getUserBoard()
+      .getUser(name)
       .subscribe(
-        data => {this.board = data; },
-        error => {this.errorMessage = `${error.status}: ${JSON.parse(error.error).message}`; });
+        data => { this.userInfor = data; },
+        error => {this.userInfor = null; }
+      );
+
   }
 
 }

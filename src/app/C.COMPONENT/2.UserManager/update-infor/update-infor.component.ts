@@ -2,7 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {UpdateInfo} from '../../../A.MODEL/1.Request/UserManager/Update-Infor';
 import {AuthService} from '../../../B.SERVICE/1.UserManager/auth/auth.service';
 import {TokenStorageService} from '../../../B.SERVICE/1.UserManager/token/token-storage.service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
+import {UserService} from '../../../B.SERVICE/1.UserManager/user/user.service';
 
 @Component({
   selector: 'app-update-infor',
@@ -19,13 +20,24 @@ export class UpdateInforComponent implements OnInit {
   data: FormData = new FormData();
   fileList: FileList;
 
+  updateUser: UpdateInfo;
+
   constructor(
     private authService: AuthService,
     private tokenStorage: TokenStorageService,
-    private router: Router) {
+    private router: Router,
+    private userService: UserService,
+    private route: ActivatedRoute) {
   }
 
   ngOnInit() {
+    const name = localStorage.getItem('username');
+    this.userService
+      .getUpdateUser(name)
+      .subscribe(
+        data => {this.updateInfo = data; },
+        error => {this.updateInfo = null; }
+      );
   }
 
   fileChange(event) {

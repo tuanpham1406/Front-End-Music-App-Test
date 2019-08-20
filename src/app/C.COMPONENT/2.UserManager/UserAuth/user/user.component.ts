@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {UserService} from '../../../../B.SERVICE/1.UserManager/user/user.service';
 import {TokenStorageService} from '../../../../B.SERVICE/1.UserManager/token/token-storage.service';
 import {Router} from '@angular/router';
+import {UserInfo} from 'firebase';
 
 @Component({
   selector: 'app-user',
@@ -12,6 +13,7 @@ export class UserComponent implements OnInit {
   board: any = [];
   errorMessage: string;
   info: any;
+  userInfor: UserInfo;
 
   constructor(
     private userService: UserService,
@@ -23,8 +25,12 @@ export class UserComponent implements OnInit {
     this.userService
       .getUserBoard()
       .subscribe(
-        data => { this.board = data; },
-        error => { console.log(error); });
+        data => {
+          this.board = data;
+        },
+        error => {
+          console.log(error);
+        });
 
     this.info = {
       token: this.token.getToken(),

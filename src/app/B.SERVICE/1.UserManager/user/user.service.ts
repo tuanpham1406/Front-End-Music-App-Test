@@ -6,6 +6,7 @@ import {FileUpload} from '../../../A.MODEL/1.Request/SongManager/FileUpload';
 import {AngularFireDatabase, AngularFireList} from 'angularfire2/database';
 import * as firebase from 'firebase';
 import {RegisterInfo} from '../../../A.MODEL/1.Request/UserManager/Register-Infor';
+import {UpdateInfo} from '../../../A.MODEL/1.Request/UserManager/Update-Infor';
 
 @Injectable({providedIn: 'root'})
 export class UserService {
@@ -14,6 +15,8 @@ export class UserService {
   private userUrl = 'http://localhost:8080/api/users/user';
   private pmUrl = 'http://localhost:8080/api/users/pm';
   private adminUrl = 'http://localhost:8080/api/users/admin';
+  private updateUserUrl = 'http://localhost:8080/api/auth/updateuser';
+  private getUserUrl = 'http://localhost:8080/api/auth/user';
 
 
   // FIREBASE - API
@@ -32,9 +35,15 @@ export class UserService {
   getAdminBoard(): Observable<string> {
     return this.http.get(this.adminUrl, {responseType: 'text'});
   }
+  getUpdateUser(username: string): Observable<UpdateInfo> {
+    return this.http.get<UpdateInfo>(`${this.updateUserUrl}/${username}`);
+  }
+  getUser(username: string): Observable<UpdateInfo> {
+    return this.http.get<UpdateInfo>(`${this.getUserUrl}/${username}`);
+  }
 
   // SERVICE CHO FIREBASE
-  pushAvatarToStorage(fileUpload: FileUpload) {
+  public pushAvatarToStorage(fileUpload: FileUpload) {
     const storageReference = firebase.storage().ref();
     const uploadTaskAvatar = storageReference
       .child(`${this.userAvatarUrl}/${fileUpload.file.name}`)
@@ -57,11 +66,11 @@ export class UserService {
   public saveAvatarData(fileUpload: FileUpload) {
     this.db.list(`${this.userAvatarUrl}/`).push(fileUpload);
   }
-  getAvatarUploads(numberItems): AngularFireList<FileUpload> {
+  public getAvatarUploads(numberItems): AngularFireList<FileUpload> {
     return this.db.list(this.userAvatarUrl, ref =>
       ref.limitToLast(numberItems));
   }
-  deleteAvatarUpload(fileUpload: FileUpload) {
+  public deleteAvatarUpload(fileUpload: FileUpload) {
     this.deleteAvatarDatabase(fileUpload.key)
       .then(() => {
         this.deleteAvatarStorage(fileUpload.name);
