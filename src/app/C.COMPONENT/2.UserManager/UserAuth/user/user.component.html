@@ -5,7 +5,7 @@
       <p>{{info.username}}</p>
       <ul class="sub-menu">
         <li><a [routerLink]="['/auth/dashboard']">Dashboard</a></li>
-        <li><a [routerLink]="['/auth/updateuser', info.username]">Edit Infor</a></li>
+        <li><a [routerLink]="['/auth/updateuser']">Edit Infor</a></li>
         <li><a [routerLink]="['/auth/changepass']">Edit Password</a></li>
         <li><a><button class="btn btn-dark" (click)="logout()">LogOut</button></a></li>
       </ul>

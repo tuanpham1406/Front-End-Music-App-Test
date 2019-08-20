@@ -31,7 +31,8 @@ export class UpdateInforComponent implements OnInit {
   }
 
   ngOnInit() {
-    const name = localStorage.getItem('username');
+    debugger;
+    const name = sessionStorage.getItem('AuthUsername');
     this.userService
       .getUpdateUser(name)
       .subscribe(

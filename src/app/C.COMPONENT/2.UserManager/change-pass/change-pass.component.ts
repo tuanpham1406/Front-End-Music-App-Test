@@ -17,35 +17,30 @@ function comparePassword(c: AbstractControl) {
 export class ChangePassComponent implements OnInit {
   form: any = {};
   changePassword: ChangePassword;
-  changeForm: FormGroup;
+  isChangePassed = false;
   errorMessage = '';
 
   constructor(
     private authService: AuthService,
-    private fb: FormBuilder,
     private router: Router) {
   }
 
   ngOnInit() {
-    this.changeForm = this.fb.group({
-      currentPassword: ['', Validators.required],
-      pwGroup: this.fb.group({
-        newPassword: ['', [Validators.required, Validators.minLength(6)]],
-        confirmNewPassword: ['', [Validators.required, Validators.minLength(6)]]
-      }, {validator: comparePassword})
-  });
   }
 
   ngSubmit() {
+    debugger;
     this.changePassword = new ChangePassword(
       this.form.currentPassword,
-      this.form.newPassword,
-      this.form.confirmNewPassword);
+      this.form.newPassword);
 
     this.authService
       .changePasswordAuth(this.changePassword)
       .subscribe(
-        data => {console.log(data); this.router.navigate(['/home']); },
+        data => {
+          console.log(data);
+          this.isChangePassed = true;
+          this.router.navigate(['/home']); },
         error => {console.log(error); this.errorMessage = error.error.message; });
   }
 }
