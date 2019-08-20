@@ -12,8 +12,8 @@ import {FormGroup} from '@angular/forms';
   providedIn: 'root'
 })
 export class SongService {
-  private basePathAvatar = 'dangduc_project/songManager/avatar';
-  private basePathFile = 'dangduc_project/songManager/fileMp3';
+  private basePathAvatar = 'dangduc/avatar';
+  private basePathFile = 'dangduc/fileMp3';
 
   private songUrl = 'http://localhost:8080/api/songs';
 
@@ -24,23 +24,29 @@ export class SongService {
   }
 
   // XU LI SERVICE CHO FIREBASE
-  public pushFileToStorage(fileUpload: FileUpload) {
+  public pushFileToStorage(fileUpload: FileUpload, progress: { percentage: number }) {
     const storageRef = firebase.storage().ref();
     const uploadTask = storageRef
       .child(`${this.basePathFile}/${fileUpload.file.name}`)
       .put(fileUpload.file);
 
     uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
-      (snapshot) => {const snap = snapshot as firebase.storage.UploadTaskSnapshot; },
-              (error) => { console.log(error); },
-          () => {
-                uploadTask.snapshot.ref
-                  .getDownloadURL()
-                  .then(downloadURL => {
-                    console.log('File available at', downloadURL);
-                    fileUpload.url = downloadURL;
-                    fileUpload.name = fileUpload.file.name;
-                    this.saveFileData(fileUpload); });
+      (snapshot) => {
+        const snap = snapshot as firebase.storage.UploadTaskSnapshot;
+        progress.percentage = Math.round((snap.bytesTransferred / snap.totalBytes) * 100);
+      },
+      (error) => {
+        console.log(error);
+      },
+      () => {
+        uploadTask.snapshot.ref
+          .getDownloadURL()
+          .then(downloadURL => {
+            console.log('File available at', downloadURL);
+            fileUpload.url = downloadURL;
+            fileUpload.name = fileUpload.file.name;
+            this.saveFileData(fileUpload);
+          });
       }
     );
   } // Push file
@@ -48,14 +54,18 @@ export class SongService {
     this.db
       .list(`${this.basePathFile}/`)
       .push(fileUpload)
-      .then(  result => {console.log('saveFileData', result); });
+      .then(result => {
+        console.log('saveFileData', result);
+      });
   } // Save file
   public getFileUploads(numberItems): AngularFireList<FileUpload> {
     return this.db.list(this.basePathFile, ref => ref.limitToLast(numberItems));
   }  // Get file
   private deleteFileUpload(fileUpload: FileUpload) {
     this.deleteFileDatabase(fileUpload.key)
-      .then(() => {this.deleteFileStorage(fileUpload.name); })
+      .then(() => {
+        this.deleteFileStorage(fileUpload.name);
+      })
       .catch(error => console.log(error));
   } // Delete file
   private deleteFileDatabase(key: string) {
@@ -65,13 +75,18 @@ export class SongService {
     const storageRef = firebase.storage().ref();
     storageRef.child(`${this.basePathFile}/${name}`).delete();
   } // Delete file from Storage
-  pushAvatarToStorage(fileUpload: FileUpload) {
+  pushAvatarToStorage(fileUpload: FileUpload, progress: { percentage: number }) {
     const storageReference = firebase.storage().ref();
     const uploadTaskAvatar = storageReference.child(`${this.basePathAvatar}/${fileUpload.file.name}`).put(fileUpload.file);
 
     uploadTaskAvatar.on(firebase.storage.TaskEvent.STATE_CHANGED,
-      (snapshot) => {const snap = snapshot as firebase.storage.UploadTaskSnapshot; },
-      (error) => {console.log(error); },
+      (snapshot) => {
+        const snap = snapshot as firebase.storage.UploadTaskSnapshot;
+        progress.percentage = Math.round((snap.bytesTransferred / snap.totalBytes) * 100);
+      },
+      (error) => {
+        console.log(error);
+      },
       () => {
         uploadTaskAvatar.snapshot.ref.getDownloadURL().then(downloadURL => {
           console.log('File available at', downloadURL);
@@ -82,13 +97,16 @@ export class SongService {
       }
     );
   }
+
   private saveAvatarData(fileUpload: FileUpload) {
     this.db.list(`${this.basePathAvatar}/`).push(fileUpload);
   }
+
   getAvatarUploads(numberItems): AngularFireList<FileUpload> {
     return this.db.list(this.basePathAvatar, ref =>
       ref.limitToLast(numberItems));
   }
+
   deleteAvatarUpload(fileUpload: FileUpload) {
     this.deleteAvatarDatabase(fileUpload.key)
       .then(() => {
@@ -96,9 +114,11 @@ export class SongService {
       })
       .catch(error => console.log(error));
   }
+
   private deleteAvatarDatabase(key: string) {
     return this.db.list(`${this.basePathAvatar}/`).remove(key);
   }
+
   private deleteAvatarStorage(name: string) {
     const storageRef = firebase.storage().ref();
     storageRef.child(`${this.basePathAvatar}/${name}`).delete();

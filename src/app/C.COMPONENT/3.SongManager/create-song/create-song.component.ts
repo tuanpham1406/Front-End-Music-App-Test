@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {HttpClient, HttpEventType, HttpResponse} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {FileUpload} from '../../../A.MODEL/1.Request/SongManager/FileUpload';
 import {SongService} from '../../../B.SERVICE/2.SongManager/song.service';
 import {SongInfor} from '../../../A.MODEL/1.Request/SongManager/Song-Infor';
@@ -10,6 +10,7 @@ import {map} from 'rxjs/operators';
 import {CategoryService} from '../../../B.SERVICE/5.Category/category.service';
 import {CategoryInfor} from '../../../A.MODEL/1.Request/CategoryManager/Category-Infor';
 import {TokenStorageService} from '../../../B.SERVICE/1.UserManager/token/token-storage.service';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -26,6 +27,8 @@ export class CreateSongComponent implements OnInit {
   like: number;
   listen: number;
   // =========================================
+  progress: { percentage: number } = { percentage: 0 };
+  progressmp3: { percentage: number } = { percentage: 0 };
   songInfor: SongInfor[] = [];
   categoryInfor: CategoryInfor[] = [];
   createSongInfo: SongInfor;
@@ -69,7 +72,7 @@ export class CreateSongComponent implements OnInit {
     this.selectedAvatarFile = undefined;
 
     this.currentAvatarFileUpload = new FileUpload(avatarFile);
-    this.songService.pushAvatarToStorage(this.currentAvatarFileUpload);
+    this.songService.pushAvatarToStorage(this.currentAvatarFileUpload, this.progress);
   }
 
   selectFile(event) {
@@ -81,7 +84,7 @@ export class CreateSongComponent implements OnInit {
     this.selectedMp3Files = undefined;
 
     this.currentMp3FileUpload = new FileUpload(mp3File);
-    this.songService.pushFileToStorage(this.currentMp3FileUpload);
+    this.songService.pushFileToStorage(this.currentMp3FileUpload, this.progressmp3);
   }
 
   // BACK-END SERVER
