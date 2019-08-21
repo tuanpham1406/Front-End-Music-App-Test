@@ -14,7 +14,7 @@
         </div>
         <div class="col-md-6">
           <h3 class="color-letter">{{song.nameSong}}</h3>
-          <p class="color-letter">Ca sĩ: <a class="not-underlined">{{song.singer}}</a></p>
+          <p class="color-letter">Ca sĩ: <a class="not-underlined">{{song.singer}}</a></p><br>
           <p class="color-letter">Thể loại: <a class="not-underlined">{{song.category}}</a></p>
         </div>
         <div class="col-xl-8"></div>
@@ -80,13 +80,13 @@
       <a routerLink="#" (click)="open(content)"><i class="fas fa-folder-plus"> Add to playlist</i></a>
       <ng-template #content let-c="close" let-d="dismiss">
         <div class="modal-header">
-          <h4 class="modal-title" id="modal-basic-title">Your Playlist!</h4>
+          <h4 class="modal-title" id="modal-basic-title">PLAYLIST</h4>
           <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          <a routerLink="#">Name Playlist</a>
+          <ul><a class="list-play-list" routerLink="#">Name Playlist</a></ul>
         </div>
         <div class="modal-footer">
         </div>
@@ -96,14 +96,15 @@
       <a routerLink="#"><i class="far fa-heart" (click)="likeCount(song.id)"> Like</i></a>
     </div>
     <div class="col-md-2">
-      <a routerLink="#"><i class="fas fa-cloud-download-alt"> Down load</i></a>
+      <a routerLink="#"><i class="fas fa-cloud-download-alt"> Download</i></a>
     </div>
     <div class="col-md-1">
       <a routerLink="#"><i class="fab fa-rocketchat"></i></a>
     </div>
   </div>
   <hr>
-  <div class="row" style="padding:10px 35px">
+  <div class="row col-md-12">
+  <div class="row col-md-8" style="padding:10px 35px">
     <div class="col-md-1">
       <img src="{{song.avatarUrl}}" alt="{{song.nameSong}}" class="avatar">
     </div>
@@ -112,44 +113,38 @@
       <a routerLink="#">{{song.singer}}</a>
     </div>
     <div class="col-md-5"></div>
-    <div class="col-md-4">
-      <h4>Có thể bạn quan tâm</h4>
-      <div class="list-song">
-        <table class="table table-striped table-responsive-md btn-table">
-
-        <thead>
-        <tr>
-          <th>#</th>
-          <th>Name Song</th>
-          <th>Singer</th>
-          <th>Listened</th>
-          <th>Liked</th>
-        </tr>
-        </thead>
-
-        <tbody>
-        <tr *ngFor="let song of songInfor">
-          <td>{{song.id}}</td>
-          <td><a [routerLink]="['/song/play',song.id]">{{song.nameSong}}</a></td>
-          <td>{{song.singer}}</td>
-          <td>{{song.listen}}</td>
-          <td>{{song.like}}</td>
-        </tr>
-        </tbody>
-
-        </table>
+    <div class="card-footer row" style="padding:10px 35px">
+      <div class="col-md-12"><h2>Lyrics: </h2></div>
+      <div class="col-md-12">
+        <p>{{song.lyrics}}</p>
       </div>
     </div>
   </div>
-  <div class="card-footer row col-md-8" style="padding:10px 35px">
-    <div class="col-md-12"><h2>Lyrics: </h2></div>
-    <div class="col-md-8">
-      <p>{{song.lyrics}}</p>
+    <div class="col-md-4">
+        <h4>Có thể bạn quan tâm</h4>
+        <div class="list-song">
+          <table class="table table-striped table-responsive-md btn-table">
+            <thead>
+            <tr>
+              <th><i class="fas fa-music"></i></th>
+              <th>Name Song</th>
+              <th>Singer</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let song of songInfor">
+<!--              <td>{{song.avatarUrl}}</td>-->
+              <td><a class="list-play-list" [routerLink]="['/song/play',song.id]">{{song.nameSong}}</a></td>
+              <td>{{song.singer}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
     </div>
   </div>
   <hr>
-  <div class="card-footer row col-md-8" style="padding:10px 35px">
-    <div class="col-md-8">
+  <div class="row col-md-12" style="padding:10px 35px">
+    <div class="col-md-12">
       <h2>Comments: </h2>
     </div>
     <hr>

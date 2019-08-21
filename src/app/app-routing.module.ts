@@ -11,6 +11,7 @@ import {PersonalComponent} from './C.COMPONENT/3.SongManager/personal/personal.c
 import {ListSongComponent} from './C.COMPONENT/3.SongManager/list-song/list-song.component';
 import {DetailSongComponent} from './C.COMPONENT/3.SongManager/detail-song/detail-song.component';
 import {SingerComponent} from './C.COMPONENT/5.SingerManager/singer/singer.component';
+import {CreatePlaylistComponent} from './C.COMPONENT/4.PlayListManager/create-playlist/create-playlist.component';
 
 
 const routes: Routes = [
@@ -25,6 +26,7 @@ const routes: Routes = [
   {path: 'auth/personal', component: PersonalComponent},
   {path: 'song/play/:id', component: DetailSongComponent},
   {path: 'singer/song', component: SingerComponent},
+  {path: 'playlist/create', component: CreatePlaylistComponent},
   {path: '', redirectTo: 'home', pathMatch: 'full'}
 ];
 

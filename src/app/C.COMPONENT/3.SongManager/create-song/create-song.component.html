@@ -39,7 +39,7 @@
                       <textarea type="text" class="form-control"
                                 name="category" placeholder="lyrics"
                                 [(ngModel)]="form.lyrics"
-                                #lyrics="ngModel" required  style="height: 200px"></textarea>
+                                #lyrics="ngModel" required style="height: 200px"></textarea>
             </div>
 
             <div style="margin-bottom: 25px" class="form-group">
@@ -51,7 +51,8 @@
                    role="progressbar" attr.aria-valuenow="{{progress.percentage}}"
                    aria-valuemin="0" aria-valuemax="100"
                    [ngStyle]="{width:progress.percentage+'%'}">
-                {{progress.percentage}}%</div>
+                {{progress.percentage}}%
+              </div>
             </div>
 
             <div style="margin-bottom: 25px" class="form-group">
@@ -64,7 +65,8 @@
                    role="progressbar" attr.aria-valuenow="{{progressmp3.percentage}}"
                    aria-valuemin="0" aria-valuemax="100"
                    [ngStyle]="{width:progressmp3.percentage+'%'}">
-                {{progressmp3.percentage}}%</div>
+                {{progressmp3.percentage}}%
+              </div>
             </div>
             <hr>
             <div class="form-group">
